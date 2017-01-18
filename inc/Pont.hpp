@@ -15,10 +15,12 @@ public:
     //ACCESSEURS LECTURE
     Ile getIle1();
     Ile getIle2();
+    int getNombre();
 
     //ACCESSEURS ECRITURE
     void setIle1(Ile ile1);
     void setIle2(Ile ile2);
+    void setNombre(int nombre);
 
 };
 
