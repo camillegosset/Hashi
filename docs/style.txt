@@ -1,0 +1,18 @@
+- Editeur de texte:
+atom , emacs
+- Utilisation de GitHub
+- Makefile , possibilité de faire un cMake
+- Style de code :
+    - 4 espaces pour l'indentation
+    - style d'indentation :
+    Ma Classe {
+
+    }
+    - style de nommage:
+        -camel case supérieur pour les classes (MaClasse)
+        -camel case inférieur pour les fonctions (maFonction)
+        -autre pour les variables (ma_variable)
+        -PAS DE CODE dans les en-têtes
+        -attributs privés précédés de _
+        -accesseurs précédés de set ou get
+    -Commentaires et noms de symboles en français
