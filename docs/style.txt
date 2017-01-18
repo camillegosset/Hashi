@@ -14,5 +14,5 @@ atom , emacs
         -autre pour les variables (ma_variable)
         -PAS DE CODE dans les en-têtes
         -attributs privés précédés de _
-        -accesseurs précédés de set ou get
+        -accesseurs précédés de set ou get sauf pour les booléens (question ex: estIlPlace) 
     -Commentaires et noms de symboles en français
