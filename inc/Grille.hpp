@@ -17,13 +17,11 @@ public:
     Grille(int n, int m, std::vector<Ile> iles_presentes); //Classique
 
     //ACCESSEURS LECTURE
-
     int getN() const;
     int getM() const;
     std::vector<Ile> getIlesPresentes() const;
 
     //ACCESSEURS ECRITURE
-
     void setN( int n);
     void setM( int m);
     void setIlesPresentes(std::vector<Ile> iles_presentes);
