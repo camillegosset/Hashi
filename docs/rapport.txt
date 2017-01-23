@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{sectsty}
+\usepackage{xcolor}
+\usepackage{pst-all,pst-eucl}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+
+\definecolor{couleur_section}{RGB}{133,53,123}
+\definecolor{couleur_subsection}{RGB}{0,99,111}
+\definecolor{couleur_subsubsection}{RGB}{44,111,205}
+\sectionfont{\color{couleur_section}}
+\subsectionfont{\color{couleur_subsection} \hspace{0.4cm}}
+\subsubsectionfont{\color{couleur_subsubsection} \itshape \hspace{1cm}}
+
+\pagestyle{fancy}
+\fancyhead{}%
+\fancyfoot{}%
+\definecolor{Couleur_pp}{RGB}{33,33,33}
+\fancyfoot[C]{\color{Couleur_pp}\textit{Hashiwokakero - Jérémie Dautheribes - Camille Gosset - Thomas Bertin - Thomas Digiovani} \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+
+
+\begin{document}
+
+\begin{titlepage}
+  \begin{center}
+    % Institution et cursus
+    \includegraphics[scale=0.45]{logos.png}
+    \vspace{1.5cm}
+
+    \textsc{\LARGE Université de Montpellier}\\
+    Licence~2 informatique\\
+    HLIN405~--~Projet tutoré
+
+    \vfill
+
+    % Titre
+    %\textsc{\Large Rapport de stage}
+    %\vfill
+
+
+    { \huge \bfseries Hashiwokakero - Projet Semestre impair \\[0.4cm] }
+
+    \HRule
+    \vfill
+
+    % Entreprise du stage
+    %\emph{Entreprise~:} Point Course
+
+    \vfill
+
+    % Auteur et tuteur
+    \begin{minipage}{0.9\textwidth}
+
+        Camille Gosset - Jérémie Dautheribes - Thomas Bertin - Thomas Digiovani
+
+    \end{minipage}
+
+    \vfill
+
+    % Dates
+    {\large Janvier 2017}
+  \end{center}
+\end{titlepage}
+
+
+
+\section{\LARGE Introduction}
+\hspace{0.5cm} Dans le cadre de l'unité d'enseignement de projet tutoré (HLIN405), nous avons développé en équipe le jeu «Hashiwokakero». Notre groupe est composé de quatre personnes: Camille Gosset, Jérémie Dautheribes ,Thomas Bertin et Thomas Digiovani
+L’objectif de ce projet est un résolveur du jeu Hashiwokakero fonctionnel. Ce résolveur mobilise les bases d’algorithmique et de programmation apprises au cours de la première et deuxième année ainsi que nos connaissances et nos recherches personnelles même si ce projet est NP-complet. La création de ce résolveur nous a permis de renforcer nos capacités de travail en collaboration, en communication et en gestion de projet en général.
+   \subsection{\Large Cahier des Charges}
+
+\section{\LARGE Organisation du projet}
+
+    \subsection{\Large Organisation du travail}
+
+    \hspace{0.5cm} Pour répartir le travail, nous avons décidé de fonctionner par multiples réunions avec notre tuteur (chaque semaine) afin de nous répartir le travail et ensuite avancer chacun de notre côté. Nous avons employé des outils de communication tels que Skype ou Appear (dont les liens sont dans la bibliographie) afin de communiquer en dehors des réunions et ainsi que pour s'entraider quand quelqu'un avait besoin d'aide.\newline \newline
+
+ %   \begin{figure}[ht]
+ %   \centering
+  %  \centerline{\includegraphics[width=1\textwidth]{uml.pdf}}
+   % \caption{UML des classes du jeu}
+    %\end{figure}
+
+
+
+    \subsection{Outil de Développement}
+
+    \hspace{0.5cm} Tout le code du programme est centralisé sur un dépôt GitHub (voir le lien dans la bibliographie) et les membres du groupe utilisent Git pour synchroniser leur travail, travailler indépendamment, vérifier le travail des autres ou récupérer d’anciennes versions.
+    Pour le développement du jeu, nous avons choisi langage C++ (langage appri pendant ces deux dernières années).
+    Nous avons fait le choix de la SFML comme bibliothèque pour l'affichage par fenêtre.
+    Pour écrire le code, nous avons utilisé différents éditeurs de texte (atom et emacs). Le compilateur choisi était g++. Nous avons utilisé gdb comme outil de débogage. Pour faciliter la compilation, nous avons utilisé le logiciel Cmake et Makefile. \newline
+    Pour obtenir un code homogène, nous nous sommes donnés des styles de codes: Nous avons utilisé quatre espaces en guise d'indentation. En ce qui concerne les commentaires nous avons fait le choix de les faire en français. Les noms de variables et de fonction sont aussi en français mais les accesseurs doivent être précédés de set ou de get. Nous avons établi plusieurs styles de nommage: camel case supérieur pour les classes (ex: MaClasse), camel case inférieur pour les fonctions et méthodes (ex: maFonction), autre pour les variables (ex: ma\_variable), attributs privés précédés de \_. Les entêtes ne devaient pas contenir de code.
+
+\section{\LARGE Analyse du projet}
+
+    \subsection{\Large Découpage du Code}
+        \subsubsection{Pour le moment}
+        \begin{itemize}
+        \item Ile.hpp
+        \item Grille.hpp
+        \item Ponts.hpp
+        \end{itemize}
+
+    \subsection{\Large Formalisme des fichiers}
+    \hspace{0.5cm} Nous avons défini notre format de fichier en ce qui concerne le fichier que notre résolveur va traiter. Nous avons inséré les informations nécessaires pour qu'on puisse ensuite charger ce fichier et reprendre la sauvegarde où on avait quitté le jeu. \newline
+   % \begin{figure}[ht]
+    %\centering
+    %\centerline{\includegraphics[width=1\textwidth]{formalisme.pdf}}
+    %\caption{Schéma du formalisme du fichier}
+    %\label{schema}
+    %\end{figure}
+
+\section{\LARGE Developpement et difficultées principales recontrées}
+
+    \subsection{\Large Défnition du formalisme de fichier}
+    \hspace{0.5cm} Tout d'abord notre tuteur nous a donné en premier lieu de définir le format de fichier (fichier qu'on passera en paramètre pour résoudre le casse-tête
+    \subsection{\Large Définition des classes de base}
+    \hspace{0.5cm} Nous nous sommes d'abord occupés des Classes principales : Nous avons créé Ile, Game, GameState, Grid et Ponts. Nous avons commencé par réfléchir aux classes et on ensuite on a codé le corps de la classe (Constructeurs, accesseurs et méthodes principales).
+
+
+\section{\LARGE Manuel d'utilisation}
+
+\hspace{0.5cm} Afin de faciliter le processus de compilation au cours du développement du jeu, nous avons décidé d'employer le logiciel CMake qui génère automatiquement un Makefile en fonction des différents fichiers. Il est nécessaire d'installer cet outil si ce n'est pas déjà fait. \newline
+Pour les distributions basés sur Debian, il faut exécuter la commande suivante: \newline
+\noindent \texttt{sudo apt-get install build-essential cmake}
+\newline
+Pour macOS: \newline
+En ligne de commande: \newline
+\texttt{brew install cmake} (nécessite le gestionnaire de paquet Homebrew) \newline
+Téléchargement depuis le site internet: \newline
+\url{https://cmake.org/download/} \newline
+
+
+Il est également nécessaire d'installer la bibliothèque ncurses si ce n'est pas déjà fait.
+Pour les distributions basés sur Debian, il faut exécuter la commande suivante : \newline
+\noindent \texttt{sudo apt install libncurses5-dev}
+
+Pour la génération du fichier Make, une fois placé dans le dossier hashi/build, il faut exécuter la commande suivante dans le terminal :
+
+\noindent \texttt{cmake ..}
+
+Il est maitenant possible de compiler en appelant simplement la commande make (toujours dans le dossier tenten/build) :\newline
+\texttt{make}
+
+
+Une fois compiler nous pouvons lancer le jeu via \texttt{./hashi} (toujours dans le dossier hashi/build).
+
+Divers arguments peuvent être passés :
+\begin{itemize}
+\item -h ou --help pour afficher l'aide
+\item -v ou --version pour afficher la version
+\item -l ou --load suivi du nom du fichier de sauvegarde ("test" par défaut, sans rajouter l'extension ".tenten") afin de reprendre un partie précédemment sauvegardée
+\end{itemize}
+Ensuite nous n'avons qu'à attendre que le résolveur trouve une solution.
+
+\section{\LARGE Conclusion}
+
+    \subsection{\Large Perspective et apports}
+    \hspace{0.5cm} Nous avions à notre disposition des créneaux pour rencontrer notre tuteur et pour se retrouver ce qui était une très bonne idée et ce qui nous a permis de bien avancer. \newline
+    Les principaux points négatifs sont liés à la pression sur la dernière semaine.  Malgré tout, le ressenti global est positif grace à une bonne entente dans l'équipe et à une bonne organsition. Cela nous a permi de confirmer et développer nos compétences en programmation c++, en algorithmique, en gestion de projet et en gestion d'équipe.
+
+    \subsection{\Large Conclusion}
+        \subsubsection{\large Fonctionnement de l’application}
+        \hspace{0.5cm} Nous avons rendu un résolveur qui fonctionne et nous avons rempli le cahier des charges demandé. Cependant, nous avons eu des contretemps qui nous ont retardé dans notre planning prévisionnel dans le développement du résolveur. Nous avons tout de même pu rendre un projet abouti.
+
+        \subsubsection{\large Fonctionnement du groupe de travail}
+        \hspace{0.5cm}Nous avons basé notre travail sur des réunions entre nous et avec notre tuteur(chaque semaine) ce qui nous a permis de gagner en efficacité du fait de notre répartition de travail. Si l’un de nous n’arrivait pas à sa tâche, il a pu demander de l’aide et facilement être conseillé.
+        Au niveau de la communication, nous n’avons eu aucun problème car nous sommes amis dans la vie quotidienne et, en plus de cela, nous nous retrouvions très souvent sur Skype ainsi qu’à l’université afin de discuter de tout problème. Cela nous a permis d'optimiser nos chances de trouver rapidement une solution.
+        Enfin, grâce à notre motivation individuelle, une fois groupée et à laquelle on y ajoute une détermination et une coopération, nous avons pu aboutir à un projet fonctionnel tout en surmontant nos difficultés. Ce projet était l'une des premières étapes à notre formation et nous pourrons assuremment dans le futur réaliser de nouveaux projets plus longs et plus complexes.
+
+\section{\LARGE Bibliographie}
+\begin{itemize}
+    \item \url{http://www.xm1math.net/doculatex/}
+    \item \url{http://www.cplusplus.com/reference/}
+    \item \url{https://github.com/}
+    \item \url{https://www.skype.com/fr/}
+    \item \url{https://appear.in/}
+\end{itemize}
+
+\end{document}

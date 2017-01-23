@@ -1,5 +1,5 @@
-#ifndef _ILE_H
-#define _ILE_H
+#ifndef _ILE_HPP
+#define _ILE_HPP
 
 #include <vector>
 #include <iostream>
@@ -39,4 +39,4 @@ public:
 
 };
 
-#endif // _ILE_H
+#endif // _ILE_HPP

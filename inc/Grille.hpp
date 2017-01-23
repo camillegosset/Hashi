@@ -3,18 +3,18 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
 #include "Ile.hpp"
 
-class Grid{
+class Grille{
 private:
     int _n;
     int _m; // Car on a une grille de type nxm
     std::vector<Ile> _iles_presentes; // Vector des iles dans la grille
 public:
     //CONSTRUCTEURS
-    Grid(); //Par défaut
-    Grid(int n, int m, std::vector<Ile> iles_presentes); //Classique
-    Grid(std::istream& is); // à partir du fichier
+    Grille(); //Par défaut
+    Grille(int n, int m, std::vector<Ile> iles_presentes); //Classique
 
     //ACCESSEURS LECTURE
 
@@ -27,6 +27,8 @@ public:
     void setN( int n);
     void setM( int m);
     void setIlesPresentes(std::vector<Ile> iles_presentes);
+    void setUneIle(Ile UneIle);
+    void lecture(std::istream& is); // à partir du fichier reconstruit la grille
 };
 
 #endif // _GRILLE_H
