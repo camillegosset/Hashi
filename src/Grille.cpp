@@ -1,7 +1,66 @@
 #include "../inc/Grille.hpp"
 
-/*void Grille::lecture(std::istream& is){
-} */
+std::string enleverEspace(std::string str){
+    std::size_t gauche = str.find_first_not_of("\t ");
+    std::size_t droite = str.find_last_not_of("\t ");
+
+    if (gauche != std::string::npos && droite != std::string::npos)
+    {
+        return str.substr(gauche, droite - gauche + 1);
+    }
+
+    return str;
+}
+
+std::string champDeLecture(std::istream& in){
+    std::string champ;
+    int lecture = in.get();
+    // Lecture de la ligne jusqu’au prochain : ou bien la fin de la ligne
+    while (lecture != ':' && lecture != '\n' && in)
+    {
+        champ += lecture;
+        lecture = in.get();
+    }
+
+    return enleverEspace(champ);
+}
+
+void ignoreChars(std::istream& in, std::string chars){
+    // Lecture jusqu’au prochain caractère intéressant
+    int lecture = in.get();
+
+    while (chars.find(lecture) != std::string::npos && in)
+    {
+        lecture = in.get();
+    }
+
+    // Comme on a lu un caractère de trop, on revient d’un en arrière
+    if (in)
+    {
+        in.unget();
+    }
+}
+
+void Grille::lecture(std::istream& in){
+    std::string champ;
+    //vidage des iles
+    _iles_presentes.clear();
+
+    do {
+        champ = champDeLecture(in);
+        ignoreChars(in, " \t");
+
+        if (champ == "longueur"){
+            in >> _n;
+        }
+        if (champ == "largeur"){
+            in >> _m;
+        }
+        if (champ == "Grid"){
+            // remplir le vector d'iles => appeler le constructeurs d'iles depuis un istream
+        }
+    } while(champ.size());
+}
 
 //CONSTRUCTEURS
 

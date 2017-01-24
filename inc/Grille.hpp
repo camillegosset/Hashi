@@ -26,6 +26,11 @@ public:
     void setM( int m);
     void setIlesPresentes(std::vector<Ile> iles_presentes);
     void setUneIle(Ile UneIle);
+
+    //METHODES
+    std::string enleverEspace(std::string str);
+    std::string champDeLecture(std::istream& in);
+    void ignoreChars(std::istream& in, std::string chars);
     void lecture(std::istream& is); // à partir du fichier reconstruit la grille
 };
 
