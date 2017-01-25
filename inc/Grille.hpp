@@ -10,7 +10,8 @@ class Grille{
 private:
     int _n;
     int _m; // Car on a une grille de type nxm
-    std::vector<Ile> _iles_presentes; // Vector des iles dans la grille
+    std::vector<std::vector<Ile>> _iles_presentes; // Vector à 2 dimensiond des iles dans la grille 
+    //TODO : faire une structure pour remplacer les iles par soit des iles soit des ponts ou soit NULL 
 public:
     //CONSTRUCTEURS
     Grille(); //Par défaut
