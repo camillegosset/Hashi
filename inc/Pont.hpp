@@ -8,6 +8,7 @@ private:
     Ile _ile1;
     Ile _ile2;
     int _nombre; //Nombre de Ponts reliant les iles
+    bool _est_vertical; //True si le pont est vertical, false s'il est horizontal
 public:
     //CONSTRUCTEURS
     Pont( Ile ile1, Ile ile2);
