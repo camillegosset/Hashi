@@ -6,7 +6,7 @@
 
 class Ile{
 private:
-    int _val; // valeur de l'ile (nombre de ponts qui vont devoir être placés)
+    int _val; // Valeur de l'ile (nombre de ponts qui vont devoir être placés)
     int _abscisse; // Coordonnées en abscisse de l'ile
     int _ordonnee; // Coordonnées en ordonnée de l'ile
     int _ponts_places; // Nombre de ponts déjà placé
@@ -15,12 +15,12 @@ private:
     bool _est_relie; // Booléen : true si tous les ponts ont été placés, faux sinon
 
 public:
-    //CONSTRUCTEURS
+    // CONSTRUCTEURS
     Ile(int val, int x, int y);
     Ile(int val, int x, int y, int ponts_places, std::vector<Ile> voisins_possibles, std::vector<Ile> voisins_reels, bool est_relie);
     Ile(std::istream& is);
 
-    //ACCESSEURS LECTURE
+    // ACCESSEURS LECTURE
     int getVal();
     int getX();
     int getY();
@@ -29,13 +29,14 @@ public:
     std::vector<Ile> getVoisinsReels();
     bool estIlLie();
 
-    //ACCESSEURS ECRITURE
-    void setVal( int val);
-    void setX( int x);
-    void setY( int y);
-    void setPontsPlaces( int n);
-    void setVoisinsPossibles(std::vector<Ile> v);
-    void setVoisinsReels( std::vector<Ile> v);
+    // ACCESSEURS ECRITURE
+    void setVal(int);
+    void setX(int);
+    void setY(int);
+    void setPontsPlaces(int);
+    void setVoisinsPossibles(std::vector<Ile>);
+    void setVoisinsReels(std::vector<Ile>);
+    void setEstRelie(bool);
 
 };
 
