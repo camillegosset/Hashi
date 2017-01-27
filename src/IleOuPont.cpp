@@ -1,8 +1,10 @@
 #include <iostream>
+#include "../inc/IleOuPont.hpp"
 
-IleOuPont::IleOuPont(Ile* ile): _ile(ile) {}
+IleOuPont::IleOuPont(): _ile(NULL), _pont(NULL) {}
+IleOuPont::IleOuPont(Ile* ile): _ile(ile), _pont(NULL) {}
 
-IleOuPont::IleOuPont(Pont* pont): _pont(pont) {}
+IleOuPont::IleOuPont(Pont* pont): _ile(NULL), _pont(pont) {}
 
 Ile* IleOuPont::getIle() const{
     return this->_ile;

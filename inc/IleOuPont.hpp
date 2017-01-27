@@ -8,6 +8,7 @@ class IleOuPont {
         Ile* _ile;
         Pont* _pont;
     public :
+        IleOuPont();
         IleOuPont(Ile*);
         IleOuPont(Pont*);
         void setIle(Ile* ile);
