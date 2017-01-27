@@ -1,0 +1,11 @@
+#include "../inc/Pont.hpp"
+
+
+
+Ile Pont::getIle1() {
+    return _ile1;
+}
+
+Ile Pont::getIle2() {
+    return _ile2;
+}
