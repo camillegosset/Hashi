@@ -13,6 +13,7 @@ std::string enleverEspace(std::string str){
     return str;
 }
 
+
 std::string champDeLecture(std::istream& in){
     std::string champ;
     int lecture = in.get();
@@ -102,6 +103,10 @@ IleOuPont Grille::getUneIleOuUnPont(int x, int y) const{
     return this->_objets_presents[x][y];
 }
 
+bool Grille::getEstResolu(){
+    return this->_est_resolu;
+}
+
 //ACCESSEURS ECRITURE
 void Grille::setN( int n){
     this->_n = n;
@@ -122,4 +127,8 @@ void Grille::setIlesOuPonts(IleOuPont** objets_presents){
 
 void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
     this->_objets_presents[x][y]= une_ile_ou_un_pont;
+}
+
+void Grille::setEstResolu(bool resolu){
+    this->_est_resolu = resolu;
 }
