@@ -9,20 +9,20 @@ private:
     Ile* _ile2;
     int _nombre; // Nombre de Ponts reliant les iles
     bool _est_vertical; // True si le pont est vertical, false s'il est horizontal
-  
+
 public:
     // CONSTRUCTEURS
     Pont(Ile, Ile);
 
     // ACCESSEURS LECTURE
-    Ile getIle1();
-    Ile getIle2();
+    Ile* getIle1();
+    Ile* getIle2();
     int getNombre();
     bool getEstVertical();
 
     // ACCESSEURS ECRITURE
-    void setIle1(Ile);
-    void setIle2(Ile);
+    void setIle1(Ile*);
+    void setIle2(Ile*);
     void setNombre(int);
     void setEstVertical(bool);
 

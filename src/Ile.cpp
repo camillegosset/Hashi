@@ -2,7 +2,7 @@
 
 // Constructeurs
 Ile::Ile(int val, int x, int y):
-  _val(val), _abscisse(x), _ordonnee(y), _ponts_places(0), _voisins_possibles ({}), _voisins_reels({}), _est_relie(false)
+  _val(val), _abscisse(x), _ordonnee(y), _ponts_places(0), _voisins_possibles(), _voisins_reels(), _est_relie(false)
 {}
 
 Ile::Ile(int val, int x, int y, int p_p, std::vector<Ile> v_p, std::vector<Ile> v_r, bool est_r):

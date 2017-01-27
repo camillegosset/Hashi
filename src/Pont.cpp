@@ -9,11 +9,11 @@ Pont::Pont(Ile i1, Ile i2) {
 }
 
 // Accesseurs en lecture
-Ile Pont::getIle1() {
+Ile* Pont::getIle1() {
     return _ile1;
 }
 
-Ile Pont::getIle2() {
+Ile* Pont::getIle2() {
     return _ile2;
 }
 
@@ -26,15 +26,15 @@ bool Pont::getEstVertical() {
 }
 
 // Accesseurs en écriture
-void Pont::setIle1(ile i) {
+void Pont::setIle1(Ile* i) {
     _ile1= i;
 }
 
-void Pont::setIle2(ile i) {
+void Pont::setIle2(Ile* i) {
     _ile2= i;
 }
 
-void Pont::setIle1(int n) {
+void Pont::setNombre(int n) {
     _nombre= n;
 }
 
