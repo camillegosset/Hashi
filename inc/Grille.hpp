@@ -5,29 +5,29 @@
 #include <iostream>
 #include <string>
 #include "Ile.hpp"
+#include "IleOuPont.hpp"
 
 class Grille{
 private:
     int _n;
     int _m; // Car on a une grille de type nxm
-    std::vector<std::vector<Ile>> _iles_presentes; // Vector à 2 dimensiond des iles dans la grille
-    //TODO : faire une structure pour remplacer les iles par soit des iles soit des ponts ou soit NULL
+    IleOuPont** _objets_presents; // Vector à 2 dimensiond des iles ou des ponts dans la grille
 public:
     //CONSTRUCTEURS
     Grille(); //Par défaut
-    Grille(int n, int m, std::vector<Ile> iles_presentes); //Classique
 
     //ACCESSEURS LECTURE
     int getN() const;
     int getM() const;
-    std::vector<std::vector<Ile>> getIlesPresentes() const;
-    Ile getUneIle() const;
+    IleOuPont** getIlesOuPonts() const;
+    IleOuPont getUneIleOuUnPont(int x, int y) const;
 
     //ACCESSEURS ECRITURE
     void setN( int n);
     void setM( int m);
-    void setIlesPresentes(std::vector<std::vector<Ile>> iles_presentes);
-    void setUneIle(Ile UneIle);
+    void setIlesOuPonts(IleOuPont** objets_presents);
+    void setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y);
+
 
     //METHODES
     std::string enleverEspace(std::string str);
