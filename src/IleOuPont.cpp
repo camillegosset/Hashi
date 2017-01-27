@@ -1,6 +1,8 @@
 #include <iostream>
 
-IleOuPont::IleOuPont(Ile* ile,Pont* pont): _ile(ile), _pont(pont) {}
+IleOuPont::IleOuPont(Ile* ile): _ile(ile) {}
+
+IleOuPont::IleOuPont(Pont* pont): _pont(pont) {}
 
 Ile* IleOuPont::getIle() const{
     return this->_ile;
