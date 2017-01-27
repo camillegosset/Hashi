@@ -1,7 +1,7 @@
 #include "../inc/Grille.hpp"
 #include "../inc/IleOuPont.hpp"
 
-std::string enleverEspace(std::string str){
+std::string Grille::enleverEspace(std::string str){
     std::size_t gauche = str.find_first_not_of("\t ");
     std::size_t droite = str.find_last_not_of("\t ");
 
@@ -14,7 +14,7 @@ std::string enleverEspace(std::string str){
 }
 
 
-std::string champDeLecture(std::istream& in){
+std::string Grille::champDeLecture(std::istream& in){
     std::string champ;
     int lecture = in.get();
     // Lecture de la ligne jusqu’au prochain : ou bien la fin de la ligne
@@ -27,7 +27,7 @@ std::string champDeLecture(std::istream& in){
     return enleverEspace(champ);
 }
 
-void ignoreChars(std::istream& in, std::string chars){
+void Grille::ignoreChars(std::istream& in, std::string chars){
     // Lecture jusqu’au prochain caractère intéressant
     int lecture = in.get();
 
