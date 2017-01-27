@@ -44,7 +44,12 @@ void ignoreChars(std::istream& in, std::string chars){
 void Grille::lecture(std::istream& in){
     std::string champ;
     //vidage des iles
-    //TODO
+    for(int i=0; i<_n; i++){
+        for(int j=0; j<_m; j++){
+            (this->_objets_presents[i][j]).setIle(NULL);
+            (this->_objets_presents[i][j]).setPont(NULL);
+        }
+    }
 
     do {
         champ = champDeLecture(in);
@@ -92,7 +97,7 @@ void Grille::setM( int m){
 }
 
 void Grille::setIlesOuPonts(IleOuPont** objets_presents){
-    
+
     for(int i =0; i< _n ; i++){
         for(int j=0; j< _m; j++ ){
             this->_objets_presents[i][j] = objets_presents[i][j];
