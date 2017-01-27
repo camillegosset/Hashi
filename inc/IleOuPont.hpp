@@ -4,8 +4,15 @@
 #include "Pont.hpp"
 
 class IleOuPont {
-    Ile* _ile;
-    Pont* _pont;
+    private :
+        Ile* _ile;
+        Pont* _pont;
+    public :
+        IleOuPont(Ile*,Pont*);
+        void setIle(Ile* ile);
+        void setPont(Pont* pont);
+        Ile* getIle() const;
+        Pont* getPont() const;
 };
 
 #endif // _IleOuPont_HPP
