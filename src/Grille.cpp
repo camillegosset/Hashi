@@ -44,7 +44,12 @@ void ignoreChars(std::istream& in, std::string chars){
 void Grille::lecture(std::istream& in){
     std::string champ;
     //vidage des iles
-    _iles_presentes.clear();
+    for(int i=0; i<_n; i++){
+        for(int j=0; j<_m; j++){
+            (this->_objets_presents[i][j]).setIle(NULL);
+            (this->_objets_presents[i][j]).setPont(NULL);
+        }
+    }
 
     do {
         champ = champDeLecture(in);
@@ -64,8 +69,7 @@ void Grille::lecture(std::istream& in){
 
 //CONSTRUCTEURS
 
-Grille::Grille(): _n(0), _m(0), _iles_presentes(0) {}
-//Grille::Grille(int n, int m, std::vector<std::vector<Ile>> iles_presentes) : _n(n) , _m(m), _iles_presentes(iles_presentes) {}
+Grille::Grille(): _n(0), _m(0), _objets_presents(0) {}
 
 //ACCESSEURS EN LECTURE
 int Grille::getN() const{
@@ -76,8 +80,11 @@ int Grille::getM() const{
     return this->_m;
 }
 
-std::vector<std::vector<Ile>> Grille::getIlesPresentes() const{
-    return this->_iles_presentes;
+IleOuPont** Grille::getIlesOuPonts() const{
+    return this->_objets_presents;
+}
+IleOuPont Grille::getUneIleOuUnPont(int x, int y) const{
+    return this->_objets_presents[x][y];
 }
 
 //ACCESSEURS ECRITURE
@@ -89,15 +96,15 @@ void Grille::setM( int m){
     this->_m = m;
 }
 
-/*void Grille::setIlesPresentes(std::vector<std::vector<Ile>> iles_presentes){
-    _iles_presentes.clear();
-    for(int i = 0 ; i< _n; i++){
-        for(int j=0; j< _m ; j++ ){
-            this->_iles_presentes.push_back((iles_presentes.at(i)).at(j));
+void Grille::setIlesOuPonts(IleOuPont** objets_presents){
+
+    for(int i =0; i< _n ; i++){
+        for(int j=0; j< _m; j++ ){
+            this->_objets_presents[i][j] = objets_presents[i][j];
         }
     }
 }
 
-void Grille::setUneIle(Ile UneIle){
-    _iles_presentes.push_back(UneIle);
-}*/
+void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
+    this->_objets_presents[x][y]= une_ile_ou_un_pont;
+}
