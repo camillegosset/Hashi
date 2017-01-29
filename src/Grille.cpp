@@ -45,6 +45,7 @@ void Grille::ignoreChars(std::istream& in, std::string chars){
 
 void Grille::lecture(std::istream& in){
     std::string champ;
+    
     //vidage des iles
     for(int i=0; i<_n; i++){
         for(int j=0; j<_m; j++){
@@ -59,16 +60,21 @@ void Grille::lecture(std::istream& in){
 
         if (champ == "longueur"){
             in >> _n;
+	    in.get();
         }
+	
         if (champ == "largeur"){
             in >> _m;
+	    in.get();
         }
+	
         if(_n && _m){
             _objets_presents = new IleOuPont*[_n];
             for (size_t i = 0; i < _n; i++) {
                 _objets_presents[i] = new IleOuPont[_m];
             }
         }
+	
         if (champ == "Grille"){
 
             in.seekg(1,std::ios_base::cur);

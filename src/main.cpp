@@ -9,5 +9,6 @@ int main(int argc, char const *argv[]) {
     std::ifstream fichier(argv[1], std::ios::in);
 
     grille.lecture(fichier);
+
     return 0;
 }
