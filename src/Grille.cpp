@@ -84,10 +84,15 @@ void Grille::lecture(std::istream& in){
 	        in >> x;
 	        in >> y;
 	        in >> val;
-	      
-	        ile = new Ile(val,x,y);
-	        _objets_presents[x][y].setIle(ile);
-
+		
+	        if (x<=_n && y<=_m) {
+		    ile = new Ile(val,x,y);
+		    _objets_presents[x][y].setIle(ile);
+		}
+		else {
+		    std::cout<<"Erreur: mauvais choix de coordonnées \n";
+		}
+		
 	        in.get();
 		champ= champDeLecture(in);
 	    }
