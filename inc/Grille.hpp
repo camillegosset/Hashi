@@ -1,22 +1,19 @@
 #ifndef _GRILLE_H
 #define _GRILLE_H
 
-#include <vector>
-#include <iostream>
 #include <string>
-#include "Ile.hpp"
 #include "IleOuPont.hpp"
 
 class Grille{
 private:
     int _n;
     int _m; // Car on a une grille de type nxm
-    IleOuPont** _objets_presents; // Vector à 2 dimensiond des iles ou des ponts dans la grille
+    IleOuPont** _objets_presents; // Vector à 2 dimensions des iles ou des ponts dans la grille
     bool _est_resolu;
 
 public:
     //CONSTRUCTEURS
-    Grille(); //Par défaut
+    Grille(); // Par défaut
 
     //ACCESSEURS LECTURE
     int getN() const;
@@ -26,8 +23,8 @@ public:
     bool getEstResolu();
 
     //ACCESSEURS ECRITURE
-    void setN( int n);
-    void setM( int m);
+    void setN(int n);
+    void setM(int m);
     void setIlesOuPonts(IleOuPont** objets_presents);
     void setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y);
     void setEstResolu(bool resolu);

@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-class Ile{
+class Ile {
 private:
     int _val; // Valeur de l'ile (nombre de ponts qui vont devoir être placés)
     int _abscisse; // Coordonnées en abscisse de l'ile

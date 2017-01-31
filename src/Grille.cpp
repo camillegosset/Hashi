@@ -1,5 +1,4 @@
 #include "../inc/Grille.hpp"
-#include "../inc/IleOuPont.hpp"
 
 std::string Grille::enleverEspace(std::string str){
     std::size_t gauche = str.find_first_not_of("\t ");
@@ -79,7 +78,7 @@ void Grille::lecture(std::istream& in){
 	
         if (champ == "Grille"){
 	    in.seekg(1,std::ios_base::cur);
-	  
+
 	    while(champ.size()) {
 	      
 	        in >> x;
@@ -89,8 +88,8 @@ void Grille::lecture(std::istream& in){
 	        ile = new Ile(val,x,y);
 	        _objets_presents[x][y].setIle(ile);
 
-		in.get();
-		champ = champDeLecture(in);
+	        in.get();
+		champ= champDeLecture(in);
 	    }
 	}
     } while(champ.size());
