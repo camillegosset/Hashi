@@ -1,0 +1,10 @@
+Longueur:15
+Largeur:10
+Grille:
+1 1 2
+.
+10 9 4
+.
+4 7 6
+.
+2 8 4
