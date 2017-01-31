@@ -44,7 +44,8 @@ void Grille::ignoreChars(std::istream& in, std::string chars){
 
 void Grille::lecture(std::istream& in){
     std::string champ;
-    int x,y,val;
+    size_t x,y;
+    int val;
     Ile* ile;
     bool estCree = false;
 
@@ -93,6 +94,13 @@ void Grille::lecture(std::istream& in){
 
 	        _objets_presents[x][y].setIle(ile);
 
+	        if (x<=_n && y<=_m) {
+		    ile = new Ile(val,x,y);
+		    _objets_presents[x][y].setIle(ile);
+		}
+		else {
+		    std::cout<<"Erreur: mauvais choix de coordonnées \n";
+		}
 	        in.get();
 		      champ= champDeLecture(in);
 	    }
