@@ -10,5 +10,7 @@ int main(int argc, char const *argv[]) {
 
     grille.lecture(fichier);
 
+    std::cout<<grille.getN()<<" "<<grille.getM()<<" "<<grille.getUneIleOuUnPont(1,1).getIle()->getVal()<<" "<<grille.getUneIleOuUnPont(5,5).getIle()->getVal();
+
     return 0;
 }

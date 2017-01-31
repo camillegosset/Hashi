@@ -45,8 +45,10 @@ void Grille::ignoreChars(std::istream& in, std::string chars){
 
 void Grille::lecture(std::istream& in){
     std::string champ;
+    int x,y,val;
+    Ile* ile;
     
-    //vidage des iles
+    // Vidage des iles
     for(int i=0; i<_n; i++){
         for(int j=0; j<_m; j++){
             (this->_objets_presents[i][j]).setIle(NULL);
@@ -58,12 +60,12 @@ void Grille::lecture(std::istream& in){
         champ = champDeLecture(in);
         ignoreChars(in, " \t");
 
-        if (champ == "longueur"){
+        if (champ == "Longueur"){
             in >> _n;
 	    in.get();
         }
 	
-        if (champ == "largeur"){
+        if (champ == "Largeur"){
             in >> _m;
 	    in.get();
         }
@@ -76,21 +78,25 @@ void Grille::lecture(std::istream& in){
         }
 	
         if (champ == "Grille"){
+	    in.seekg(1,std::ios_base::cur);
+	  
+	    while(champ.size()) {
+	      
+	        in >> x;
+	        in >> y;
+	        in >> val;
+	      
+	        ile = new Ile(val,x,y);
+	        _objets_presents[x][y].setIle(ile);
 
-            in.seekg(1,std::ios_base::cur);
-            int x,y,val;
-            in >> x;
-            in >> y;
-            in >> val;
-
-            Ile *ile = new Ile(val,x,y);
-            _objets_presents[x][y].setIle(ile);
-        }
+		in.get();
+		champ = champDeLecture(in);
+	    }
+	}
     } while(champ.size());
 }
 
 //CONSTRUCTEURS
-
 Grille::Grille(): _n(0), _m(0), _objets_presents(0) {}
 
 //ACCESSEURS EN LECTURE
@@ -103,7 +109,7 @@ int Grille::getM() const{
 }
 
 IleOuPont** Grille::getIlesOuPonts() const{
-    return this->_objets_presents;
+  return _objets_presents;
 }
 IleOuPont Grille::getUneIleOuUnPont(int x, int y) const{
     return this->_objets_presents[x][y];
