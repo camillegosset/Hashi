@@ -46,10 +46,11 @@ void Grille::lecture(std::istream& in){
     std::string champ;
     int x,y,val;
     Ile* ile;
-    
+    bool estCree = false;
+
     // Vidage des iles
-    for(int i=0; i<_n; i++){
-        for(int j=0; j<_m; j++){
+    for(size_t i=0; i<_n; i++){
+        for(size_t j=0; j<_m; j++){
             (this->_objets_presents[i][j]).setIle(NULL);
             (this->_objets_presents[i][j]).setPont(NULL);
         }
@@ -63,33 +64,37 @@ void Grille::lecture(std::istream& in){
             in >> _n;
 	    in.get();
         }
-	
+
         if (champ == "Largeur"){
             in >> _m;
 	    in.get();
         }
-	
-        if(_n && _m){
+
+        if(_n && _m && !estCree){
+
             _objets_presents = new IleOuPont*[_n];
             for (size_t i = 0; i < _n; i++) {
                 _objets_presents[i] = new IleOuPont[_m];
             }
+            estCree = true;
+
         }
-	
+
         if (champ == "Grille"){
 	    in.seekg(1,std::ios_base::cur);
 
 	    while(champ.size()) {
-	      
+
 	        in >> x;
 	        in >> y;
 	        in >> val;
-	      
-	        ile = new Ile(val,x,y);
+
+	        ile = new Ile(val,x ,y);
+
 	        _objets_presents[x][y].setIle(ile);
 
 	        in.get();
-		champ= champDeLecture(in);
+		      champ= champDeLecture(in);
 	    }
 	}
     } while(champ.size());
@@ -129,8 +134,8 @@ void Grille::setM( int m){
 
 void Grille::setIlesOuPonts(IleOuPont** objets_presents){
 
-    for(int i =0; i< _n ; i++){
-        for(int j=0; j< _m; j++ ){
+    for(size_t i =0; i< _n ; i++){
+        for(size_t j=0; j< _m; j++ ){
             this->_objets_presents[i][j] = objets_presents[i][j];
         }
     }
@@ -142,4 +147,19 @@ void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
 
 void Grille::setEstResolu(bool resolu){
     this->_est_resolu = resolu;
+}
+
+void Grille::affichage (std::ostream& sortie) const{
+  for (size_t i = 0; i < _m; i++) {
+    for (size_t j = 0; j < _n; j++) {
+      auto grille = getUneIleOuUnPont(i,j);
+      if( grille.getIle() != NULL){
+        sortie << grille.getIle()->getVal() << " ";
+      }
+      else
+      sortie << ". ";
+    }
+    sortie << '\n';
+  }
+  sortie << '\n';
 }
