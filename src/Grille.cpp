@@ -44,29 +44,20 @@ void Grille::ignoreChars(std::istream& in, std::string chars){
 
 void Grille::lecture(std::istream& in){
     std::string champ;
-    size_t x,y;
-    int val;
+    int x,y,val;
     Ile* ile;
     bool estCree = false;
-
-    // Vidage des iles
-    for(size_t i=0; i<_n; i++){
-        for(size_t j=0; j<_m; j++){
-            (this->_objets_presents[i][j]).setIle(NULL);
-            (this->_objets_presents[i][j]).setPont(NULL);
-        }
-    }
 
     do {
         champ = champDeLecture(in);
         ignoreChars(in, " \t");
 
-        if (champ == "Longueur"){
+        if (champ == "Hauteur"){
             in >> _n;
 	    in.get();
         }
 
-        if (champ == "Largeur"){
+        if (champ == "Longueur"){
             in >> _m;
 	    in.get();
         }
@@ -79,6 +70,13 @@ void Grille::lecture(std::istream& in){
             }
             estCree = true;
 
+            // Vidage des iles
+            for(size_t i=0; i<_n; i++){
+                for(size_t j=0; j<_m; j++){
+                    (this->_objets_presents[i][j]).setIle(NULL);
+                    (this->_objets_presents[i][j]).setPont(NULL);
+                }
+            }
         }
 
         if (champ == "Grille"){
@@ -86,20 +84,17 @@ void Grille::lecture(std::istream& in){
 
 	    while(champ.size()) {
 
-	        in >> x;
 	        in >> y;
+	        in >> x;
 	        in >> val;
 
-	        ile = new Ile(val,x ,y);
-
-	        _objets_presents[x][y].setIle(ile);
-
-	        if (x<=_n && y<=_m) {
+	        if (x <_n && y<_m && y >= 0 && x >= 0 && val >= 1 && val <= 8) {
 		    ile = new Ile(val,x,y);
 		    _objets_presents[x][y].setIle(ile);
 		}
 		else {
-		    std::cout<<"Erreur: mauvais choix de coordonnées \n";
+		    std::cerr<<"Erreur: mauvais choix de coordonnées \n";
+            std::exit(EXIT_FAILURE); // FAIIIIIL
 		}
 	        in.get();
 		      champ= champDeLecture(in);
@@ -158,8 +153,8 @@ void Grille::setEstResolu(bool resolu){
 }
 
 void Grille::affichage (std::ostream& sortie) const{
-  for (size_t i = 0; i < _m; i++) {
-    for (size_t j = 0; j < _n; j++) {
+  for (size_t i = 0; i < _n; i++) {
+    for (size_t j = 0; j < _m; j++) {
       auto grille = getUneIleOuUnPont(i,j);
       if( grille.getIle() != NULL){
         sortie << grille.getIle()->getVal() << " ";
