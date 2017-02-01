@@ -15,6 +15,9 @@ public:
     //CONSTRUCTEURS
     Grille(); // Par défaut
 
+    //DESTRUCTEUR
+    ~Grille();
+
     //ACCESSEURS LECTURE
     int getN() const;
     int getM() const;

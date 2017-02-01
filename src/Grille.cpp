@@ -1,5 +1,66 @@
 #include "../inc/Grille.hpp"
 
+//CONSTRUCTEUR
+Grille::Grille(): _n(0), _m(0), _objets_presents(0) {}
+
+//DESTRUCTEUR
+Grille::~Grille(){
+    for (size_t i = 0; i < _n; i++) {
+        delete [] _objets_presents[i];
+    }
+
+    delete [] _objets_presents;
+}
+
+
+//ACCESSEURS EN LECTURE
+int Grille::getN() const{
+    return this->_n;
+}
+
+int Grille::getM() const{
+    return this->_m;
+}
+
+IleOuPont** Grille::getIlesOuPonts() const{
+  return _objets_presents;
+}
+IleOuPont Grille::getUneIleOuUnPont(int x, int y) const{
+    return this->_objets_presents[x][y];
+}
+
+bool Grille::getEstResolu(){
+    return this->_est_resolu;
+}
+
+//ACCESSEURS ECRITURE
+void Grille::setN( int n){
+    this->_n = n;
+}
+
+void Grille::setM( int m){
+    this->_m = m;
+}
+
+void Grille::setIlesOuPonts(IleOuPont** objets_presents){
+
+    for(size_t i =0; i< _n ; i++){
+        for(size_t j=0; j< _m; j++ ){
+            this->_objets_presents[i][j] = objets_presents[i][j];
+        }
+    }
+}
+
+void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
+    this->_objets_presents[x][y]= une_ile_ou_un_pont;
+}
+
+void Grille::setEstResolu(bool resolu){
+    this->_est_resolu = resolu;
+}
+
+
+// Méthodes récupération fichier et affichage
 std::string Grille::enleverEspace(std::string str){
     std::size_t gauche = str.find_first_not_of("\t ");
     std::size_t droite = str.find_last_not_of("\t ");
@@ -103,54 +164,6 @@ void Grille::lecture(std::istream& in){
     } while(champ.size());
 }
 
-//CONSTRUCTEURS
-Grille::Grille(): _n(0), _m(0), _objets_presents(0) {}
-
-//ACCESSEURS EN LECTURE
-int Grille::getN() const{
-    return this->_n;
-}
-
-int Grille::getM() const{
-    return this->_m;
-}
-
-IleOuPont** Grille::getIlesOuPonts() const{
-  return _objets_presents;
-}
-IleOuPont Grille::getUneIleOuUnPont(int x, int y) const{
-    return this->_objets_presents[x][y];
-}
-
-bool Grille::getEstResolu(){
-    return this->_est_resolu;
-}
-
-//ACCESSEURS ECRITURE
-void Grille::setN( int n){
-    this->_n = n;
-}
-
-void Grille::setM( int m){
-    this->_m = m;
-}
-
-void Grille::setIlesOuPonts(IleOuPont** objets_presents){
-
-    for(size_t i =0; i< _n ; i++){
-        for(size_t j=0; j< _m; j++ ){
-            this->_objets_presents[i][j] = objets_presents[i][j];
-        }
-    }
-}
-
-void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
-    this->_objets_presents[x][y]= une_ile_ou_un_pont;
-}
-
-void Grille::setEstResolu(bool resolu){
-    this->_est_resolu = resolu;
-}
 
 void Grille::affichage (std::ostream& sortie) const{
     sortie << "+";
