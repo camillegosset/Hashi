@@ -153,7 +153,13 @@ void Grille::setEstResolu(bool resolu){
 }
 
 void Grille::affichage (std::ostream& sortie) const{
+    sortie << "+";
+  for (size_t i = 1; i <= 2*_m; i++) {
+      sortie << "-";
+  }
+  sortie<< "+"<< '\n';
   for (size_t i = 0; i < _n; i++) {
+      sortie << "|";
     for (size_t j = 0; j < _m; j++) {
       auto grille = getUneIleOuUnPont(i,j);
       if( grille.getIle() != NULL){
@@ -162,7 +168,12 @@ void Grille::affichage (std::ostream& sortie) const{
       else
       sortie << ". ";
     }
-    sortie << '\n';
+    sortie <<"|" << '\n';
   }
-  sortie << '\n';
+
+  sortie << "+";
+for (size_t i = 1; i <= 2*_m; i++) {
+    sortie << "-";
+}
+sortie<< "+"<< '\n';
 }
