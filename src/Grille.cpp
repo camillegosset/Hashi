@@ -190,3 +190,14 @@ for (size_t i = 1; i <= 2*_m; i++) {
 }
 sortie<< "+"<< '\n';
 }
+
+//Methode pour récupérer les voisins possibles de chaque ile
+void Grille::RecupVoisinsPossibles(){
+    for(size_t i=0; i< _n ; i++){
+        Ile ile();
+        for(size_t j=0; j< _m; j++){
+            if(_objets_presents[i][j].getIle() != NULL){
+            }
+        }
+    }
+}

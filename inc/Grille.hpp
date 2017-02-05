@@ -6,8 +6,9 @@
 
 class Grille{
 private:
-    unsigned int _n;
-    unsigned int _m; // Car on a une grille de type nxm
+    unsigned int _n; //Hauteur
+    unsigned int _m; //Longueur
+    // Car on a une grille de type nxm
     IleOuPont** _objets_presents; // Vector à 2 dimensions des iles ou des ponts dans la grille
     bool _est_resolu;
 
@@ -39,6 +40,7 @@ public:
     void ignoreChars(std::istream& in, std::string chars);
     void lecture(std::istream& is); // à partir du fichier reconstruit la grille
     void affichage(std::ostream&) const;// affichage sur un flux de sortie
+    void RecupVoisinsPossibles(); // Récupère les voisins possibles de chaque ile
 };
 
 #endif // _GRILLE_H
