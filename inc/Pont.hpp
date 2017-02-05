@@ -26,6 +26,9 @@ public:
     void setNombre(int);
     void setEstVertical(bool);
 
+    //Méthode de màj quand on crée un pont
+    void majVoisinsReels();
+
 };
 
 #endif
