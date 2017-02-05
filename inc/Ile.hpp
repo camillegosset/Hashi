@@ -18,7 +18,7 @@ public:
     // CONSTRUCTEURS
     Ile(int val, int x, int y);
     Ile(int val, int x, int y, int ponts_places, std::vector<Ile> voisins_possibles, std::vector<Ile> voisins_reels, bool est_relie);
-    Ile(Ile& ile);
+    //Ile(Ile& ile);
     Ile(std::istream& is);
 
     // ACCESSEURS LECTURE
@@ -41,7 +41,7 @@ public:
     void setUnVoisinReel(Ile ile);
 
     //SURCHARGE
-    Ile& operator=(Ile ile);
+    void operator=(Ile ile);
 
 };
 

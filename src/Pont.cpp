@@ -41,3 +41,16 @@ void Pont::setNombre(int n) {
 void Pont::setEstVertical(bool v) {
     _est_vertical= v;
 }
+
+//Méthode de màj quand on crée un pont
+//void majVoisinsReels()
+/* i<- abscisse
+tantque (i<n && objets_presents[i][ordonnée].getIle() == NULL)
+i++
+fintq
+Si( objets_presents[i][ordonéne].getPont() == NULL ){
+voisins_possibles.push_back(objets_presents[i][ordonnée])
+(objets_presents.voisins_possibles).push_back(objets_presents[abscisse][ordonnée])
+}
+i<- abscisse (faire gauche droite haut et bas)
+}*/
