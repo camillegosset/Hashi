@@ -44,13 +44,17 @@ void Pont::setEstVertical(bool v) {
 
 //Méthode de màj quand on crée un pont
 //void majVoisinsReels()
-/* i<- abscisse
-tantque (i<n && objets_presents[i][ordonnée].getIle() == NULL)
-i++
-fintq
-Si( objets_presents[i][ordonéne].getPont() == NULL ){
-voisins_possibles.push_back(objets_presents[i][ordonnée])
-(objets_presents.voisins_possibles).push_back(objets_presents[abscisse][ordonnée])
-}
-i<- abscisse (faire gauche droite haut et bas)
-}*/
+/* (pont.il1).voisinsreels.push_back(pont.ile2)
+(pont.ile2).voisinsreels.push_back(pont.il1)
+(pont.nbre++)
+Si(pont.nbre >= 2) alors
+    Pour i alland de 0 & (pont.ile.voisins_possibles).size() -1
+        Si( pont.ile1.voisins_possibles[i]= pont.ile2) // comparer abscisse & ordonnée
+         //efface la case
+//pareil pour ile2
+
+Si (pont.est_vertical == true ) alors
+    pour i allant de ile1.ordonnee à ille.2 ordonnee
+        //faire varier l'abscisse pour casser les iles et enlever les voisins_possibles
+
+else //pareil avec l'abscisse*/
