@@ -206,9 +206,12 @@ ile <- objets_presents[i][j].getIle()
 }*/
 void Grille::RecupVoisinsPossibles(){
     for(size_t i=0; i< _n ; i++){
-        Ile ile();
+        Ile ile(-1,-1,-1);
         for(size_t j=0; j< _m; j++){
             if(_objets_presents[i][j].getIle() != NULL){
+                if( ile.getVal()== -1 && ile.getX() == -1 && ile.getY() == -1){
+                    ile.affectation(_objets_presents[i][j].getIle());
+                }
             }
         }
     }

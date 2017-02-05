@@ -74,8 +74,8 @@ void Ile::setUnVoisinReel(Ile ile){
     _voisins_reels.push_back(ile);
 }
 
-//SURCHARGE AFFECTATION
-void Ile::operator=(Ile ile){
+//SURCHARGE AFFECTATION par méthode
+void Ile::affectation(Ile& ile){
     this->_val= ile.getVal();
     this->_abscisse= ile.getX();
     this->_ordonnee= ile.getY();

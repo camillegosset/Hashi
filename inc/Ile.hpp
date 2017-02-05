@@ -41,7 +41,7 @@ public:
     void setUnVoisinReel(Ile ile);
 
     //SURCHARGE
-    void operator=(Ile ile);
+    void affectation(Ile& ile);
 
 };
 
