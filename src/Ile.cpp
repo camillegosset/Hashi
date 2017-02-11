@@ -1,6 +1,10 @@
 #include "../inc/Ile.hpp"
 
 // Constructeurs
+
+Ile::Ile(): _val(0), _abscisse(0), _ordonnee(0), _ponts_places(0), _est_relie(false) // Constructeurs par défaut
+{}
+
 Ile::Ile(int val, int x, int y):
   _val(val), _abscisse(x), _ordonnee(y), _ponts_places(0), _est_relie(false)
 {}
