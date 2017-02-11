@@ -37,6 +37,7 @@ public:
     void setY(int);
     void setPontsPlaces(int);
     void setVoisinsPossibles(std::vector<Ile>);
+    void setUnVoisinPossible(Ile ile);
     void setVoisinsReels(std::vector<Ile>);
     void setEstRelie(bool);
     void setUnVoisinReel(Ile ile);

@@ -66,6 +66,10 @@ void Ile::setVoisinsPossibles(std::vector<Ile> v) {
    _voisins_possibles= v;
 }
 
+void Ile::setUnVoisinPossible(Ile ile){
+    _voisins_possibles.push_back(ile);
+}
+
 void Ile::setVoisinsReels(std::vector<Ile> v) {
     _voisins_reels= v;
 }

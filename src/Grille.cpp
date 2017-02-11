@@ -149,7 +149,7 @@ void Grille::lecture(std::istream& in){
 	        in >> x;
 	        in >> val;
 
-	        if (x <_n && y<_m && y >= 0 && x >= 0 && val >= 1 && val <= 8) {
+	        if ((unsigned int) x <_n && (unsigned int) y<_m && y >= 0 && x >= 0 && val >= 1 && val <= 8) {
 		    ile = new Ile(val,x,y);
 		    _objets_presents[x][y].setIle(ile);
 		}
@@ -206,11 +206,17 @@ ile <- objets_presents[i][j].getIle()
 }*/
 void Grille::RecupVoisinsPossibles(){
     for(size_t i=0; i< _n ; i++){
-        Ile ile(-1,-1,-1);
+        Ile* ile= new Ile(-1, -1, -1);
         for(size_t j=0; j< _m; j++){
             if(_objets_presents[i][j].getIle() != NULL){
-                if( ile.getVal()== -1 && ile.getX() == -1 && ile.getY() == -1){
-                    ile.affectation(_objets_presents[i][j].getIle());
+                if( ile->getVal()== -1 && ile->getX() == -1 && ile->getY() == -1){
+                    ile = _objets_presents[i][j].getIle();
+                }
+                else{
+                    ile->setUnVoisinPossible(_objets_presents[i][j].getIle());
+                    _objets_presents[i][j].getIle()->setUnVoisinPossible(*ile);
+                    ile = _objets_presents[i][j].getIle();
+
                 }
             }
         }
