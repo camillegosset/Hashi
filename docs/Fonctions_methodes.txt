@@ -1,11 +1,18 @@
 Fonctions et méthodes utilisées:
 
 Grille:
+- constructeur
 - enleverEspace
 - champDeLecture
 - ignoreChars
 - lecture
 - affichage
+
+Ile:
+- constructeur
+
+IleOuPont:
+- constructeur
 
 
 Fonctions et méthodes écrites mais pas utilisées:
@@ -18,6 +25,7 @@ Ile:
 - supprimerUneCaseVoisinsPossibles
 
 Pont:
+- constructeur
 - majVoisinsRéels
 
 
