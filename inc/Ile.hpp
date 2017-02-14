@@ -38,9 +38,11 @@ public:
     void setPontsPlaces(int);
     void setVoisinsPossibles(std::vector<Ile>);
     void setUnVoisinPossible(Ile ile);
+    void setUnVoisinPossible(Ile* ile);
     void setVoisinsReels(std::vector<Ile>);
     void setEstRelie(bool);
     void setUnVoisinReel(Ile ile);
+    void setUnVoisinReel(Ile* ile);
 
     //SURCHARGE
     void affectation(Ile& ile);

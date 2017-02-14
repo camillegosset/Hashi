@@ -70,6 +70,10 @@ void Ile::setUnVoisinPossible(Ile ile){
     _voisins_possibles.push_back(ile);
 }
 
+void Ile::setUnVoisinPossible(Ile* ile){
+    _voisins_possibles.push_back(*ile);
+}
+
 void Ile::setVoisinsReels(std::vector<Ile> v) {
     _voisins_reels= v;
 }
@@ -80,6 +84,10 @@ void Ile::setEstRelie(bool r) {
 
 void Ile::setUnVoisinReel(Ile ile){
     _voisins_reels.push_back(ile);
+}
+
+void Ile::setUnVoisinReel(Ile* ile){
+    _voisins_reels.push_back(*ile);
 }
 
 //SURCHARGE AFFECTATION par méthode
