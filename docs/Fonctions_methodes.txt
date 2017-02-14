@@ -1,0 +1,26 @@
+Fonctions et méthodes utilisées:
+
+Grille:
+- enleverEspace
+- champDeLecture
+- ignoreChars
+- lecture
+- affichage
+
+
+Fonctions et méthodes écrites mais pas utilisées:
+
+Grille:
+- RecupVoisinsPossibles
+
+Ile:
+- affectation
+- supprimerUneCaseVoisinsPossibles
+
+Pont:
+- majVoisinsRéels
+
+
+Fonctions et méthodes non écrites:
+
+Rien pour l'instant
