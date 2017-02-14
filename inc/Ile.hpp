@@ -47,6 +47,9 @@ public:
     //SURCHARGE
     void affectation(Ile& ile);
 
+    //Methodes
+    void supprimerUneCaseVoisinsPossibles(size_t i);
+
 };
 
 #endif // _ILE_HPP

@@ -100,3 +100,13 @@ void Ile::affectation(Ile& ile){
     this->_voisins_reels= ile.getVoisinsReels();
     this->_est_relie= ile._est_relie;
 }
+
+//Methodes
+
+void Ile::supprimerUneCaseVoisinsPossibles(size_t i){
+    //Supprimer une case du vector des voisins possibles
+    //Permet de supprimer un voisin possibles car il n'est plus possible
+    if ( i < _voisins_possibles.size()){
+        _voisins_possibles.erase(_voisins_possibles.begin() + i);
+    }
+}

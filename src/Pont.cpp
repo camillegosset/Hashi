@@ -43,7 +43,6 @@ void Pont::setEstVertical(bool v) {
 }
 
 //Méthode de màj quand on crée un pont
-//void majVoisinsReels()
 /* (pont.il1).voisinsreels.push_back(pont.ile2)
 (pont.ile2).voisinsreels.push_back(pont.il1)
 (pont.nbre++)
@@ -58,3 +57,21 @@ Si (pont.est_vertical == true ) alors
         //faire varier l'abscisse pour casser les iles et enlever les voisins_possibles
 
 else //pareil avec l'abscisse*/
+void Pont::majVoisinsReels(){
+    this->_ile1->setUnVoisinReel(this->_ile2);
+    this->_ile2->setUnVoisinReel(this->_ile1);
+    if( this->_nombre >= 2){
+        for(size_t i=0 ; i< _ile1->getVoisinsPossibles().size() ; i++){
+            if( _ile1->getVoisinsPossibles()[i].getX() == _ile2->getX() && _ile1->getVoisinsPossibles()[i].getY() == _ile2->getY()){
+                //effacer la case
+                _ile1->supprimerUneCaseVoisinsPossibles(i);
+            }
+        }
+        for(size_t i=0 ; i< _ile2->getVoisinsPossibles().size() ; i++){
+            if( _ile2->getVoisinsPossibles()[i].getX() == _ile1->getX() && _ile2->getVoisinsPossibles()[i].getY() == _ile1->getY()){
+                //effacer la case
+                _ile2->supprimerUneCaseVoisinsPossibles(i);
+            }
+        }
+    }
+}
