@@ -3,6 +3,7 @@
 
 #include <string>
 #include "IleOuPont.hpp"
+#include "Pont.hpp"
 
 class Grille{
 private:
@@ -41,6 +42,7 @@ public:
     void lecture(std::istream& is); // à partir du fichier reconstruit la grille
     void affichage(std::ostream&) const;// affichage sur un flux de sortie
     void RecupVoisinsPossibles(); // Récupère les voisins possibles de chaque ile
+    void majVoisinsReels(Pont* pont); //Méthode de màj quand on crée un pont
 };
 
 #endif // _GRILLE_H
