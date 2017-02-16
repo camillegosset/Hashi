@@ -232,7 +232,7 @@ void Grille::majVoisinsReels(Pont* pont){
     }
     if( pont->getEstVertical() ){
         for(int i= std::min(pont->getIle1()->getY(), pont->getIle2()->getY()) ; i <= std::max(pont->getIle1()->getY(), pont->getIle2()->getY()) ; i++){
-            //Chercher 2 iles de chaque côtés
+            //Chercher 2 iles de chaque côtés du pont sur l'ordonné
             int j = i;
             while( j< getM() && (getUneIleOuUnPont( pont->getIle1()->getX(), j).getIle() == NULL ) ){
                 j++;
@@ -256,6 +256,38 @@ void Grille::majVoisinsReels(Pont* pont){
                         && getUneIleOuUnPont( pont->getIle1()->getX(), j).getIle()->getVoisinsPossibles()[l].getY() == getUneIleOuUnPont( pont->getIle1()->getX(), k).getIle()->getY() ){
                             //effacer la case
                             getUneIleOuUnPont( pont->getIle1()->getX(), j).getIle()->supprimerUneCaseVoisinsPossibles(l);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else{
+        for(int i= std::min(pont->getIle1()->getX(), pont->getIle2()->getX()) ; i <= std::max(pont->getIle1()->getX(), pont->getIle2()->getX()) ; i++){
+            //Chercher 2 iles de chaque côtés du pont sur l'absisse
+            int j = i;
+            while( j< getN() && (getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle() == NULL ) ){
+                j++;
+            }
+            if ( getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle() != NULL){
+                int k = 0;
+                while( k< getN() && (getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle() == NULL )){
+                    k--;
+                }
+                if( getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle() != NULL){
+                    for(size_t l=0 ; l< getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle()->getVoisinsPossibles().size() ; l++){
+                        if( getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle()->getVoisinsPossibles()[l].getY() == getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle()->getY()
+                        && getUneIleOuUnPont(pont->getIle1()->getY(), k).getIle()->getVoisinsPossibles()[l].getX() == getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle()->getX() ){
+                            //effacer la case
+                            getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle()->supprimerUneCaseVoisinsPossibles(l);
+                        }
+                    }
+
+                    for(size_t l=0 ; l< getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle()->getVoisinsPossibles().size() ; l++){
+                        if( getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle()->getVoisinsPossibles()[l].getY() == getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle()->getY()
+                        && getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle()->getVoisinsPossibles()[l].getX() == getUneIleOuUnPont( pont->getIle1()->getY(), k).getIle()->getX() ){
+                            //effacer la case
+                            getUneIleOuUnPont( pont->getIle1()->getY(), j).getIle()->supprimerUneCaseVoisinsPossibles(l);
                         }
                     }
                 }
