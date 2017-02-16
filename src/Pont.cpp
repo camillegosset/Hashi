@@ -8,6 +8,7 @@ Pont::Pont(Ile i1, Ile i2) {
     _est_vertical= false;
 }
 
+//Constructeur lorsque l'on va créer un pont entre 2 iles 
 Pont::Pont(Ile ile1, Ile ile2, int nombre, bool vertical){
     *_ile1= ile1;
     *_ile2= ile2;
