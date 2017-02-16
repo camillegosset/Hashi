@@ -192,18 +192,6 @@ sortie<< "+"<< '\n';
 }
 
 //Methode pour récupérer les voisins possibles de chaque ile
-/* Pour i allant de 0 à n-1
-ile <- 0
-pour j allant de 0 à m-1
-Si (objets_presents[i][j].getIle() != NULL){
-Si (ile == 0)
-ile <- objets_presents[i][j].getIle()
-else{
-ile.voisinspossibles.pushback(grille[i][j].getIle())
-objets_presents[i][j].voisinspossibles.pushback(ile)
-ile <- objets_presents[i][j].getIle()
-}
-}*/
 void Grille::RecupVoisinsPossibles(){
     for(size_t i=0; i< _n ; i++){
         Ile* ile= new Ile(-1, -1, -1);
