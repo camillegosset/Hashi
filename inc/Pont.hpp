@@ -13,7 +13,7 @@ private:
 public:
     // CONSTRUCTEURS
     Pont(Ile, Ile);
-    Pont(Ile, Ile, int); //Voir s'il est préférable de passer par Accesseur 
+    Pont(Ile, Ile, int);
 
     // ACCESSEURS LECTURE
     Ile* getIle1();
@@ -26,6 +26,7 @@ public:
     void setIle2(Ile*);
     void setNombre(int);
     void setEstVertical(bool);
+    void estVertical();
 
 
 };

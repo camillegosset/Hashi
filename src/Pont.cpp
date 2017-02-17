@@ -9,7 +9,7 @@ Pont::Pont(Ile i1, Ile i2) {
 }
 
 //Constructeur lorsque l'on va créer un pont entre 2 iles
-// ! Utiliser un Accesseur pour le Boolean => Preferable ! 
+// ! Utiliser un Accesseur pour le Boolean => Preferable !
 Pont::Pont(Ile ile1, Ile ile2, int nombre){
     *_ile1= ile1;
     *_ile2= ile2;
@@ -51,4 +51,13 @@ void Pont::setNombre(int n) {
 
 void Pont::setEstVertical(bool v) {
     _est_vertical= v;
+}
+
+void Pont::estVertical(){
+    if ( _ile1->getY() == _ile2->getY() ){
+        _est_vertical = true;
+    }
+    else{
+        _est_vertical = false;
+    }
 }
