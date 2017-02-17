@@ -29,5 +29,4 @@ Pont:
 
 
 Fonctions et méthodes non écrites:
-
-Rien pour l'instant
+- Création d'un pont
