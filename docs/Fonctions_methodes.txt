@@ -10,6 +10,8 @@ Grille:
 
 Ile:
 - constructeur
+- affectation
+- supprimerUneCaseVoisinsPossibles
 
 IleOuPont:
 - constructeur
@@ -19,14 +21,11 @@ Fonctions et méthodes écrites mais pas utilisées:
 
 Grille:
 - RecupVoisinsPossibles
-
-Ile:
-- affectation
-- supprimerUneCaseVoisinsPossibles
+- majVoisinsRéels
 
 Pont:
 - constructeur
-- majVoisinsRéels
+- Methode Accesseurs améliorée pour _est_vertical
 
 
 Fonctions et méthodes non écrites:
