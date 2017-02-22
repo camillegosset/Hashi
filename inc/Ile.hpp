@@ -13,8 +13,12 @@ private:
     std::vector<Ile> _voisins_possibles; // Vector des iles qui représente tous les voisins possibles
     std::vector<Ile> _voisins_reels; // Vector des iles qui représentent les voisins placés (ne peut pas excéder _val)
     bool _est_relie; // Booléen : true si tous les ponts ont été placés, faux sinon
-    //Arbre _composante_connexe; // Permet d'accéder à son père, son chef & la hauteur de l'arbre (représentant sa composante connexe)
-//Problème: #include "Arbre.hpp" et dans Arbre on include "Ile.hpp"
+//Problème: #include "Arbre.hpp" et dans Arbre on include "Ile.hpp" donc pas la possibilité de structure (ou trouver une solution)
+    //Copie de la structure d'Arbre
+    int hauteur;
+    Ile* pere;
+    Ile* chef;
+
 public:
     // CONSTRUCTEURS
     Ile();
@@ -30,6 +34,9 @@ public:
     std::vector<Ile> getVoisinsPossibles();
     std::vector<Ile> getVoisinsReels();
     bool estIlLie();
+    int getHauteur();
+    Ile* getPere();
+    Ile* getChef();
 
     // ACCESSEURS ECRITURE
     void setVal(int);
@@ -41,6 +48,9 @@ public:
     void setEstRelie(bool);
     void setUnVoisinReel(Ile ile);
     void setUnVoisinReel(Ile* ile);
+    void setHauteur(int h);
+    void setPere(Ile* ile);
+    void setChef(Ile* ile);
 
     //SURCHARGE
     void affectation(Ile& ile);

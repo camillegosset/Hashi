@@ -26,6 +26,9 @@ public:
     void setNombre(int);
     void estVertical();
 
+    // Méthode pour faire l'union de composantes connexes
+    void majComposantesConnexes();
+
 
 };
 
