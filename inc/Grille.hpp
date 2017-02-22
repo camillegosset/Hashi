@@ -12,6 +12,7 @@ private:
     // Car on a une grille de type nxm
     IleOuPont** _objets_presents; // Vector à 2 dimensions des iles ou des ponts dans la grille
     bool _est_resolu;
+    int _nbre_composantes_connexes;
 
 public:
     //CONSTRUCTEURS
@@ -26,12 +27,18 @@ public:
     IleOuPont** getIlesOuPonts() const;
     IleOuPont getUneIleOuUnPont(int x, int y) const;
     bool getEstResolu();
+    int getNbreComposantesConnexes();
 
     //ACCESSEURS ECRITURE
     void setN(int n);
     void setM(int m);
     void setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y);
-    void setEstResolu(bool resolu);
+    void setEstResolu();
+
+    //Choisir entre les deux suivants:
+    void setNbreComposanteConnexes( int nbre); // Soit dans la fonction on mettra setNbreComposanteConnexes( _nbre_composantes_connexes -1)
+    void setNbreComposanteConnexes(); // Le fera directement : Au choix
+
 
 
     //METHODES

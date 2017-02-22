@@ -33,6 +33,10 @@ bool Grille::getEstResolu(){
     return this->_est_resolu;
 }
 
+int Grille::getNbreComposantesConnexes(){
+    return _nbre_composantes_connexes;
+}
+
 //ACCESSEURS ECRITURE
 void Grille::setN( int n){
     this->_n = n;
@@ -46,10 +50,16 @@ void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
     this->_objets_presents[x][y]= une_ile_ou_un_pont;
 }
 
-void Grille::setEstResolu(bool resolu){
-    this->_est_resolu = resolu;
+void Grille::setEstResolu(){
+    if ( _nbre_composantes_connexes == 1)
+        _est_resolu = true;
+    else _est_resolu = false;
 }
 
+void Grille::setNbreComposanteConnexes(){
+    if( _nbre_composantes_connexes > 1)
+        _nbre_composantes_connexes = _nbre_composantes_connexes - 1;
+}
 
 // Méthodes récupération fichier et affichage
 std::string Grille::enleverEspace(std::string str){
