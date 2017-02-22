@@ -13,9 +13,6 @@ Ile::Ile(int val, int x, int y, int p_p, std::vector<Ile> v_p, std::vector<Ile> 
 _val(val), _abscisse(x), _ordonnee(y), _ponts_places(p_p), _voisins_possibles(v_p), _voisins_reels(v_r), _est_relie(est_r)
 {}
 
-//Ile::Ile(Ile& ile): _val(ile._val), _abscisse(ile._abscisse), _ordonnee(ile._ordonnee), _ponts_places(ile._ponts_places), _voisins_possibles(ile._voisins_possibles), _voisins_reels(ile._voisins_reels), _est_relie(ile._est_relie)
-//{}
-
 // Accesseurs en lecture
 int Ile::getVal() {
     return _val;
@@ -62,20 +59,12 @@ void Ile::setPontsPlaces(int n) {
     _ponts_places= n;
 }
 
-void Ile::setVoisinsPossibles(std::vector<Ile> v) {
-   _voisins_possibles= v;
-}
-
 void Ile::setUnVoisinPossible(Ile ile){
     _voisins_possibles.push_back(ile);
 }
 
 void Ile::setUnVoisinPossible(Ile* ile){
     _voisins_possibles.push_back(*ile);
-}
-
-void Ile::setVoisinsReels(std::vector<Ile> v) {
-    _voisins_reels= v;
 }
 
 void Ile::setEstRelie(bool r) {
