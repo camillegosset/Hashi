@@ -19,7 +19,6 @@ public:
     Ile();
     Ile(int val, int x, int y);
     Ile(int val, int x, int y, int ponts_places, std::vector<Ile> voisins_possibles, std::vector<Ile> voisins_reels, bool est_relie);
-    //Ile(Ile& ile);
     Ile(std::istream& is);
 
     // ACCESSEURS LECTURE
@@ -36,10 +35,8 @@ public:
     void setX(int);
     void setY(int);
     void setPontsPlaces(int);
-    void setVoisinsPossibles(std::vector<Ile>);
     void setUnVoisinPossible(Ile ile);
     void setUnVoisinPossible(Ile* ile);
-    void setVoisinsReels(std::vector<Ile>);
     void setEstRelie(bool);
     void setUnVoisinReel(Ile ile);
     void setUnVoisinReel(Ile* ile);
