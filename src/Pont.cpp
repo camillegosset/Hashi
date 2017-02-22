@@ -1,13 +1,5 @@
 #include "../inc/Pont.hpp"
 
-// Constructeur
-Pont::Pont(Ile i1, Ile i2) {
-    *_ile1= i1;
-    *_ile2= i2;
-    _nombre= 0;
-    _est_vertical= false;
-}
-
 //Constructeur lorsque l'on va créer un pont entre 2 iles
 // ! Utiliser un Accesseur pour le Boolean => Preferable !
 Pont::Pont(Ile ile1, Ile ile2, int nombre){
@@ -47,10 +39,6 @@ void Pont::setNombre(int n) {
     if( n >= 0 && n <= 2)
         _nombre= n;
     else _nombre =0;
-}
-
-void Pont::setEstVertical(bool v) {
-    _est_vertical= v;
 }
 
 void Pont::estVertical(){
