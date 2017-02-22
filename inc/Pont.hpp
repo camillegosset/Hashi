@@ -12,7 +12,6 @@ private:
 
 public:
     // CONSTRUCTEURS
-    Pont(Ile, Ile);
     Pont(Ile, Ile, int);
 
     // ACCESSEURS LECTURE
@@ -25,7 +24,6 @@ public:
     void setIle1(Ile*);
     void setIle2(Ile*);
     void setNombre(int);
-    void setEstVertical(bool);
     void estVertical();
 
 
