@@ -13,7 +13,8 @@ private:
     std::vector<Ile> _voisins_possibles; // Vector des iles qui représente tous les voisins possibles
     std::vector<Ile> _voisins_reels; // Vector des iles qui représentent les voisins placés (ne peut pas excéder _val)
     bool _est_relie; // Booléen : true si tous les ponts ont été placés, faux sinon
-
+    //Arbre _composante_connexe; // Permet d'accéder à son père, son chef & la hauteur de l'arbre (représentant sa composante connexe)
+//Problème: #include "Arbre.hpp" et dans Arbre on include "Ile.hpp"
 public:
     // CONSTRUCTEURS
     Ile();
