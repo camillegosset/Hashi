@@ -30,7 +30,6 @@ public:
     //ACCESSEURS ECRITURE
     void setN(int n);
     void setM(int m);
-    void setIlesOuPonts(IleOuPont** objets_presents);
     void setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y);
     void setEstResolu(bool resolu);
 
