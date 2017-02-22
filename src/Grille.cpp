@@ -42,15 +42,6 @@ void Grille::setM( int m){
     this->_m = m;
 }
 
-void Grille::setIlesOuPonts(IleOuPont** objets_presents){
-
-    for(size_t i =0; i< _n ; i++){
-        for(size_t j=0; j< _m; j++ ){
-            this->_objets_presents[i][j] = objets_presents[i][j];
-        }
-    }
-}
-
 void Grille::setUneIleOuUnPont(IleOuPont une_ile_ou_un_pont, int x, int y){
     this->_objets_presents[x][y]= une_ile_ou_un_pont;
 }
