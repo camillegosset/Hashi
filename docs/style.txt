@@ -4,7 +4,7 @@ atom , emacs
 - Makefile , possibilité de faire un cMake
 - Style de code :
     - 4 espaces pour l'indentation
-    - style d'indentation :
+    - style d'indentation : Stroustrup extends K&R style
     Ma Classe {
 
     }
