@@ -51,21 +51,20 @@ void Pont::estVertical(){
 }
 
 // METHODE majComposantesConnexes
-//Problème : On peut accéder au père des éléments mais pas aux fils donc on peut pas parcourir les Composantes à condition de connaitre les feuilles
+// Correction pb: On va comparer uniquement les hauteurs des chefs comme ça pas de parcours
 void Pont::majComposantesConnexes(){
-     if( _ile1->getHauteur() >= _ile2->getHauteur() ){
-         int HauteurMaximale = _ile1->getHauteur();
-         if (HauteurMaximale < _ile2->getHauteur() + 1 )
-            HauteurMaximale = _ile2->getHauteur() + 1;
+     if( _ile1->getChef()->getHauteur() >= _ile2->getChef()->getHauteur() ){
+         int HauteurMaximale = _ile1->getChef()->getHauteur();
+         if (HauteurMaximale < _ile2->getChef()->getHauteur() + 1 )
+            HauteurMaximale = _ile2->getChef()->getHauteur() + 1;
          _ile2->getChef()->setPere(_ile1->getChef());
-         // Parcourir l'arbre de la compo connexe de l'ile _ile2
+         _ile1->getChef()->setHauteur(HauteurMaximale);
 
      }
      else{
-         int HauteurMaximale = _ile2->getHauteur();
+         int HauteurMaximale = _ile2->getChef()->getHauteur();
          _ile1->getChef()->setPere(_ile2->getChef());
-          // Parcourir l'arbre de la compo connexe de l'ile _ile1
-          _ile1->getChef()->setHauteur( HauteurMaximale);
+         _ile1->getChef()->setHauteur( HauteurMaximale);
 
      }
 }
