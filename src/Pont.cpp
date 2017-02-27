@@ -9,6 +9,13 @@ Pont::Pont(Ile ile1, Ile ile2, int nombre){
         _nombre = nombre;
 }
 
+Pont::Pont(Ile* ile1, Ile* ile2, int nombre){
+    _ile1->affectation(*ile1);
+    _ile2->affectation(*ile2);
+    if( nombre >= 0 && nombre <= 2)
+        _nombre = nombre;
+}
+
 // Accesseurs en lecture
 Ile* Pont::getIle1() {
     return _ile1;

@@ -13,6 +13,7 @@ private:
 public:
     // CONSTRUCTEURS
     Pont(Ile, Ile, int);
+    Pont(Ile*, Ile*, int);
 
     // ACCESSEURS LECTURE
     Ile* getIle1();

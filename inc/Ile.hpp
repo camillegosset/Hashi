@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 
+
 class Ile {
 private:
     int _val; // Valeur de l'ile (nombre de ponts qui vont devoir être placés)
@@ -24,7 +25,6 @@ public:
     Ile();
     Ile(int val, int x, int y);
     Ile(int val, int x, int y, int ponts_places, std::vector<Ile> voisins_possibles, std::vector<Ile> voisins_reels, bool est_relie);
-    Ile(std::istream& is);
 
     // ACCESSEURS LECTURE
     int getVal();

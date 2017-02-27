@@ -59,6 +59,9 @@ void Grille::setEstResolu(){
 void Grille::setNbreComposanteConnexes(){
     if( _nbre_composantes_connexes > 1)
         _nbre_composantes_connexes = _nbre_composantes_connexes - 1;
+
+    if( _nbre_composantes_connexes == 1)
+        _est_resolu = true;
 }
 
 // Méthodes récupération fichier et affichage
@@ -293,6 +296,26 @@ void Grille::majVoisinsReels(Pont* pont){
                     }
                 }
             }
+        }
+    }
+}
+
+void Grille::placerPonts(Ile* ile){
+
+    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size())){
+        for(size_t i = 0 ; i < ile->getVoisinsPossibles().size() ; i++){
+            creerPont(ile, ile->getVoisinsPossibles().at(i), 2); //Pb : On a un vector d'ile et non un vector de pointeurs d'ile
+        }
+    }
+
+}
+
+void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
+    Pont* pont= new Pont(ile1, _objets_presents[ile2.getX()][ile2.getY()].getIle(), nbr_ponts);
+    if( ile1->getX() == ile2.getX()){
+        for(int i = ile1->getY() ; i < ile2.getY(); i++){
+            //On crée un pont à chaque case
+            _objets_presents[ile1->getX()][i].setPont(pont);
         }
     }
 }
