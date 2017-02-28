@@ -327,12 +327,14 @@ void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
         for(int i = std::min(ile1->getX(), ile2.getX()) ; i < std::max(ile2.getX(), ile1->getX()); i++){
             //On crée un pont à chaque case
             _objets_presents[ile1->getY()][i].setPont(pont);
+            majVoisinsReels(_objets_presents[ile1->getY()][i].getPont());
         }
     }
     else{
         for(int i = std::min(ile1->getY(), ile2.getY()) ; i < std::max(ile2.getY(), ile1->getY()); i++){
             //On crée un pont à chaque case
             _objets_presents[ile1->getX()][i].setPont(pont);
+            majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
         }
     }
 }
