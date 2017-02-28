@@ -42,6 +42,17 @@ bool Ile::estIlLie() {
     return _est_relie;
 }
 
+int Ile::getHauteur(){
+    return _hauteur;
+}
+
+Ile* Ile::getPere(){
+    return _pere;
+}
+Ile* Ile::getChef(){
+    return _chef;
+}
+
 // Accesseurs en écriture
 void Ile::setVal(int val) {
     _val= val;
@@ -77,6 +88,18 @@ void Ile::setUnVoisinReel(Ile ile){
 
 void Ile::setUnVoisinReel(Ile* ile){
     _voisins_reels.push_back(*ile);
+}
+
+void Ile::setHauteur(int h){
+    _hauteur = h;
+}
+
+void Ile::setPere(Ile* ile){
+    _pere = ile;
+}
+
+void Ile::setChef(Ile* ile){
+    _chef = ile;
 }
 
 //SURCHARGE AFFECTATION par méthode

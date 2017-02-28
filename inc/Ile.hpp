@@ -16,9 +16,9 @@ private:
     bool _est_relie; // Booléen : true si tous les ponts ont été placés, faux sinon
 //Problème: #include "Arbre.hpp" et dans Arbre on include "Ile.hpp" donc pas la possibilité de structure (ou trouver une solution)
     //Copie de la structure d'Arbre
-    int hauteur;
-    Ile* pere;
-    Ile* chef;
+    int _hauteur;
+    Ile* _pere;
+    Ile* _chef;
 
 public:
     // CONSTRUCTEURS
