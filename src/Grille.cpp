@@ -302,9 +302,18 @@ void Grille::majVoisinsReels(Pont* pont){
 
 void Grille::placerPonts(Ile* ile){
 
-    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size())){
+    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size()) && ile->getVal() != 0){
         for(size_t i = 0 ; i < ile->getVoisinsPossibles().size() ; i++){
             creerPont(ile, ile->getVoisinsPossibles().at(i), 2); //Pb : On a un vector d'ile et non un vector de pointeurs d'ile
+            ile->setVal();
+            ile->getVoisinsPossibles().at(i).setVal();
+        }
+    }
+    if( (unsigned int)(1 + (ile->getVal() - ile->getPontsPlaces()) / 2) == ile->getVoisinsPossibles().size() && ile->getVal() != 0){
+        for(size_t i = 0; i< ile->getVoisinsPossibles().size() ; i++){
+            creerPont(ile, ile->getVoisinsPossibles().at(i), 1);
+            ile->setVal();
+            ile->getVoisinsPossibles().at(i).setVal();
         }
     }
 

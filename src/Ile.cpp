@@ -54,8 +54,8 @@ Ile* Ile::getChef(){
 }
 
 // Accesseurs en écriture
-void Ile::setVal(int val) {
-    _val= val;
+void Ile::setVal() {
+    _val= _val - 1;
 }
 
 void Ile::setX(int x) {

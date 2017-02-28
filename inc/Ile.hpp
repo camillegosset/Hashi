@@ -39,7 +39,7 @@ public:
     Ile* getChef();
 
     // ACCESSEURS ECRITURE
-    void setVal(int);
+    void setVal();
     void setX(int);
     void setY(int);
     void setPontsPlaces(int);
