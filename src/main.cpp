@@ -11,5 +11,6 @@ int main(int argc, char const *argv[]) {
 
     fichier.close();
     grille.affichage(std::cout);
+    grille.RecupVoisinsPossibles();
     return 0;
 }

@@ -198,16 +198,41 @@ sortie<< "+"<< '\n';
 //Methode pour récupérer les voisins possibles de chaque ile
 void Grille::RecupVoisinsPossibles(){
     for(size_t i=0; i< _n ; i++){
-        Ile* ile= new Ile(-1, -1, -1);
+        Ile* ile = NULL;
         for(size_t j=0; j< _m; j++){
-            if(_objets_presents[i][j].getIle() != NULL){
-                if( ile->getVal()== -1 && ile->getX() == -1 && ile->getY() == -1){
-                    ile = _objets_presents[i][j].getIle();
+            IleOuPont caseActuel =  _objets_presents[i][j];
+            if(caseActuel.getIle() != NULL){
+                if( ile == NULL ) {
+                    ile = caseActuel.getIle();
                 }
                 else{
-                    ile->setUnVoisinPossible(_objets_presents[i][j].getIle());
-                    _objets_presents[i][j].getIle()->setUnVoisinPossible(*ile);
-                    ile = _objets_presents[i][j].getIle();
+                    if (ile->getX() != i || ile->getY() != j) {
+                        ile->setUnVoisinPossible(caseActuel.getIle());
+                        caseActuel.getIle()->setUnVoisinPossible(*ile);
+
+                        ile = caseActuel.getIle();
+                    }
+
+                }
+            }
+        }
+    }
+
+    for(size_t j=0; j < _m; j++){
+        Ile* ile = NULL;
+        for(size_t i=0; i< _n; i++){
+            IleOuPont caseActuel =  _objets_presents[i][j];
+            if(caseActuel.getIle() != NULL){
+                if( ile == NULL ) {
+                    ile = caseActuel.getIle();
+                }
+                else{
+                    if (ile->getX() != i || ile->getY() != j) {
+                        ile->setUnVoisinPossible(caseActuel.getIle());
+                        caseActuel.getIle()->setUnVoisinPossible(*ile);
+
+                        ile = caseActuel.getIle();
+                    }
 
                 }
             }
