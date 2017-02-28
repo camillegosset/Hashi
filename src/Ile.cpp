@@ -122,3 +122,9 @@ void Ile::supprimerUneCaseVoisinsPossibles(size_t i){
         _voisins_possibles.erase(_voisins_possibles.begin() + i);
     }
 }
+
+//Méthode toString
+
+void Ile::toString(){
+    std::cout<<_val<<" "<<_abscisse<<" "<<_ordonnee<<std::endl;
+}

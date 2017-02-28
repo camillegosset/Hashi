@@ -57,6 +57,7 @@ public:
 
     //Methodes
     void supprimerUneCaseVoisinsPossibles(size_t i);
+    void toString();
 
 };
 
