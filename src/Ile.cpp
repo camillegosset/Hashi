@@ -38,7 +38,7 @@ std::vector<Ile> Ile::getVoisinsReels() {
     return _voisins_reels;
 }
 
-bool Ile::estIlLie() {
+bool Ile::getRelie() {
     return _est_relie;
 }
 
