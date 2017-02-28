@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "../inc/Grille.hpp"
 
 //CONSTRUCTEUR
@@ -156,6 +157,7 @@ void Grille::lecture(std::istream& in){
 	        if ((unsigned int) x <_n && (unsigned int) y<_m && y >= 0 && x >= 0 && val >= 1 && val <= 8) {
 		    ile = new Ile(val,x,y);
 		    _objets_presents[x][y].setIle(ile);
+		    _nbre_composantes_connexes++;
 		}
 		else {
 		    std::cerr<<"Erreur: mauvais choix de coordonnées \n";
@@ -176,23 +178,44 @@ void Grille::affichage (std::ostream& sortie) const{
   }
   sortie<< "+"<< '\n';
   for (size_t i = 0; i < _n; i++) {
-      sortie << "|";
+    sortie << "|";
     for (size_t j = 0; j < _m; j++) {
-      auto grille = getUneIleOuUnPont(i,j);
-      if( grille.getIle() != NULL){
+      IleOuPont grille = getUneIleOuUnPont(i,j);
+      if( grille.getIle() != NULL) {
         sortie << grille.getIle()->getVal() << " ";
       }
-      else
-      sortie << ". ";
+      else {
+	if ( grille.getPont() != NULL ) {
+	  if ( grille.getPont()->getNombre() == 1 ) {
+	    if ( grille.getPont()->getEstVertical() ) {
+	      sortie << "| ";
+	    }
+	    else {
+	      sortie << "--";
+	    }
+	  }
+	  else {
+	    if ( grille.getPont()->getEstVertical() ) {
+	      sortie << "|| ";
+	    }
+	    else {
+	      sortie << "==";
+	    }
+	  }
+	}
+	else {
+	  sortie << ". ";
+	}
+      }
     }
     sortie <<"|" << '\n';
   }
-
+  
   sortie << "+";
-for (size_t i = 1; i <= 2*_m; i++) {
+  for (size_t i = 1; i <= 2*_m; i++) {
     sortie << "-";
-}
-sortie<< "+"<< '\n';
+  }
+  sortie<< "+"<< '\n';
 }
 
 //Methode pour récupérer les voisins possibles de chaque ile
