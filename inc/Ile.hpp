@@ -33,7 +33,7 @@ public:
     int getPontsPlaces();
     std::vector<Ile> getVoisinsPossibles();
     std::vector<Ile> getVoisinsReels();
-    bool estIlLie();
+    bool getRelie();
     int getHauteur();
     Ile* getPere();
     Ile* getChef();
