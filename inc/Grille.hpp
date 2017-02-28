@@ -55,6 +55,7 @@ public:
     void majVoisinsReels(Pont* pont); //Méthode de màj quand on crée un pont
     void placerPonts(Ile* ile); // Enumération des cas possibles
     void creerPont(Ile* ile1, Ile ile2, int nbr_ponts);
+    void creerPont(Ile* ile1, Ile* ile2, int nbr_ponts);
 };
 
 #endif // _GRILLE_H
