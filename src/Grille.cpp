@@ -176,7 +176,7 @@ void Grille::affichage (std::ostream& sortie) const{
   for (size_t i = 1; i <= 2*_m; i++) {
       sortie << "-";
   }
-  sortie<< "+"<< '\n';
+  sortie<< "+ \n";
   for (size_t i = 0; i < _n; i++) {
     sortie << "|";
     for (size_t j = 0; j < _m; j++) {
@@ -208,14 +208,14 @@ void Grille::affichage (std::ostream& sortie) const{
 	}
       }
     }
-    sortie <<"|" << '\n';
+    sortie <<"| \n";
   }
   
   sortie << "+";
   for (size_t i = 1; i <= 2*_m; i++) {
     sortie << "-";
   }
-  sortie<< "+"<< '\n';
+  sortie<< "+ \n";
 }
 
 //Methode pour récupérer les voisins possibles de chaque ile
@@ -390,17 +390,18 @@ void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
 void Grille::creerPont(Ile* ile1, Ile* ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, ile2, nbr_ponts);
     pont->estVertical();
-    if( pont->getEstVertical() == false){ //Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
+    
+    if( pont->getEstVertical() == false ) { // Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
 
-        for(int i = std::min(ile1->getX(), ile2->getX())+1 ; i < std::max(ile2->getX(), ile1->getX()); i++){
-            //On crée un pont à chaque case
+        for(int i = std::min(ile1->getX(), ile2->getX())+1 ; i < std::max(ile2->getX(), ile1->getX()); i++) {
+            // On crée un pont à chaque case
             _objets_presents[i][ile1->getY()].setPont(pont);
             majVoisinsReels(_objets_presents[i][ile1->getY()].getPont());
         }
     }
-    else{
-        for(int i = std::min(ile1->getY(), ile2->getY())+1 ; i < std::max(ile2->getY(), ile1->getY()); i++){
-            //On crée un pont à chaque case
+    else {
+        for(int i = std::min(ile1->getY(), ile2->getY())+1 ; i < std::max(ile2->getY(), ile1->getY()); i++) {
+            // On crée un pont à chaque case
             _objets_presents[ile1->getX()][i].setPont(pont);
             majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
         }

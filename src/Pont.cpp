@@ -49,7 +49,7 @@ void Pont::setNombre(int n) {
 }
 
 void Pont::estVertical(){
-    if ( _ile1->getY() == _ile2->getY() ){
+    if ( _ile1->getX() == _ile2->getX() ){
         _est_vertical = true;
     }
     else{
