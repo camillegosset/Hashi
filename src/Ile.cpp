@@ -54,8 +54,8 @@ Ile* Ile::getChef(){
 }
 
 // Accesseurs en écriture
-void Ile::setVal(int val) {
-    _val= val;
+void Ile::setVal() {
+    _val= _val - 1;
 }
 
 void Ile::setX(int x) {
@@ -121,4 +121,10 @@ void Ile::supprimerUneCaseVoisinsPossibles(size_t i){
     if ( i >= 0 && i < _voisins_possibles.size()){
         _voisins_possibles.erase(_voisins_possibles.begin() + i);
     }
+}
+
+//Méthode toString
+
+void Ile::toString(){
+    std::cout<<_val<<" "<<_abscisse<<" "<<_ordonnee<<std::endl;
 }

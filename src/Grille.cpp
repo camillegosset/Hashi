@@ -327,9 +327,18 @@ void Grille::majVoisinsReels(Pont* pont){
 
 void Grille::placerPonts(Ile* ile){
 
-    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size())){
+    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size()) && ile->getVal() != 0){
         for(size_t i = 0 ; i < ile->getVoisinsPossibles().size() ; i++){
             creerPont(ile, ile->getVoisinsPossibles().at(i), 2); //Pb : On a un vector d'ile et non un vector de pointeurs d'ile
+            ile->setVal();
+            ile->getVoisinsPossibles().at(i).setVal();
+        }
+    }
+    if( (unsigned int)(1 + (ile->getVal() - ile->getPontsPlaces()) / 2) == ile->getVoisinsPossibles().size() && ile->getVal() != 0){
+        for(size_t i = 0; i< ile->getVoisinsPossibles().size() ; i++){
+            creerPont(ile, ile->getVoisinsPossibles().at(i), 1);
+            ile->setVal();
+            ile->getVoisinsPossibles().at(i).setVal();
         }
     }
 
@@ -337,10 +346,20 @@ void Grille::placerPonts(Ile* ile){
 
 void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, _objets_presents[ile2.getX()][ile2.getY()].getIle(), nbr_ponts);
-    if( ile1->getX() == ile2.getX()){ //Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
-        for(int i = ile1->getY() ; i < ile2.getY(); i++){
+    pont->estVertical();
+    if( pont->getEstVertical() == true){ //Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
+
+        for(int i = std::min(ile1->getX(), ile2.getX()) ; i < std::max(ile2.getX(), ile1->getX()); i++){
+            //On crée un pont à chaque case
+            _objets_presents[ile1->getY()][i].setPont(pont);
+            majVoisinsReels(_objets_presents[ile1->getY()][i].getPont());
+        }
+    }
+    else{
+        for(int i = std::min(ile1->getY(), ile2.getY()) ; i < std::max(ile2.getY(), ile1->getY()); i++){
             //On crée un pont à chaque case
             _objets_presents[ile1->getX()][i].setPont(pont);
+            majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
         }
     }
 }
