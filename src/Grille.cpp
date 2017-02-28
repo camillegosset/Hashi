@@ -196,7 +196,7 @@ void Grille::affichage (std::ostream& sortie) const{
 	  }
 	  else {
 	    if ( grille.getPont()->getEstVertical() ) {
-	      sortie << "|| ";
+	      sortie << "||";
 	    }
 	    else {
 	      sortie << "==";
@@ -221,16 +221,41 @@ void Grille::affichage (std::ostream& sortie) const{
 //Methode pour récupérer les voisins possibles de chaque ile
 void Grille::RecupVoisinsPossibles(){
     for(size_t i=0; i< _n ; i++){
-        Ile* ile= new Ile(-1, -1, -1);
+        Ile* ile = NULL;
         for(size_t j=0; j< _m; j++){
-            if(_objets_presents[i][j].getIle() != NULL){
-                if( ile->getVal()== -1 && ile->getX() == -1 && ile->getY() == -1){
-                    ile = _objets_presents[i][j].getIle();
+            IleOuPont caseActuel =  _objets_presents[i][j];
+            if(caseActuel.getIle() != NULL){
+                if( ile == NULL ) {
+                    ile = caseActuel.getIle();
                 }
                 else{
-                    ile->setUnVoisinPossible(_objets_presents[i][j].getIle());
-                    _objets_presents[i][j].getIle()->setUnVoisinPossible(*ile);
-                    ile = _objets_presents[i][j].getIle();
+                    if (ile->getX() != i || ile->getY() != j) {
+                        ile->setUnVoisinPossible(caseActuel.getIle());
+                        caseActuel.getIle()->setUnVoisinPossible(*ile);
+
+                        ile = caseActuel.getIle();
+                    }
+
+                }
+            }
+        }
+    }
+
+    for(size_t j=0; j < _m; j++){
+        Ile* ile = NULL;
+        for(size_t i=0; i< _n; i++){
+            IleOuPont caseActuel =  _objets_presents[i][j];
+            if(caseActuel.getIle() != NULL){
+                if( ile == NULL ) {
+                    ile = caseActuel.getIle();
+                }
+                else{
+                    if (ile->getX() != i || ile->getY() != j) {
+                        ile->setUnVoisinPossible(caseActuel.getIle());
+                        caseActuel.getIle()->setUnVoisinPossible(*ile);
+
+                        ile = caseActuel.getIle();
+                    }
 
                 }
             }
@@ -365,16 +390,16 @@ void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
 void Grille::creerPont(Ile* ile1, Ile* ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, ile2, nbr_ponts);
     pont->estVertical();
-    if( pont->getEstVertical() == true){ //Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
+    if( pont->getEstVertical() == false){ //Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
 
-        for(int i = std::min(ile1->getX(), ile2->getX()) ; i < std::max(ile2->getX(), ile1->getX()); i++){
+        for(int i = std::min(ile1->getX(), ile2->getX())+1 ; i < std::max(ile2->getX(), ile1->getX()); i++){
             //On crée un pont à chaque case
-            _objets_presents[ile1->getY()][i].setPont(pont);
-            majVoisinsReels(_objets_presents[ile1->getY()][i].getPont());
+            _objets_presents[i][ile1->getY()].setPont(pont);
+            majVoisinsReels(_objets_presents[i][ile1->getY()].getPont());
         }
     }
     else{
-        for(int i = std::min(ile1->getY(), ile2->getY()) ; i < std::max(ile2->getY(), ile1->getY()); i++){
+        for(int i = std::min(ile1->getY(), ile2->getY())+1 ; i < std::max(ile2->getY(), ile1->getY()); i++){
             //On crée un pont à chaque case
             _objets_presents[ile1->getX()][i].setPont(pont);
             majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
