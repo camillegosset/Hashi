@@ -16,11 +16,11 @@ int main(int argc, char const *argv[]) {
     Ile* i2 = grille.getUneIleOuUnPont(2,0).getIle();
     Ile* i3 = grille.getUneIleOuUnPont(0,2).getIle();
     Ile* i4 = grille.getUneIleOuUnPont(2,2).getIle();
-    
+
     grille.creerPont(i1,i2,1);
     grille.creerPont(i3,i4,2);
     */
-    
+
     grille.affichage(std::cout);
 
     grille.RecupVoisinsPossibles();
