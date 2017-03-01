@@ -229,7 +229,7 @@ void Grille::RecupVoisinsPossibles(){
                     ile = caseActuelle.getIle();
                 }
                 else{
-                    if (ile->getX() != i || ile->getY() != j) {
+                    if ((size_t)ile->getX() != i || (size_t)ile->getY() != j) {
                         ile->setUnVoisinPossible(caseActuelle.getIle());
                         caseActuelle.getIle()->setUnVoisinPossible(*ile);
 
@@ -250,7 +250,7 @@ void Grille::RecupVoisinsPossibles(){
                     ile = caseActuelle.getIle();
                 }
                 else{
-                    if (ile->getX() != i || ile->getY() != j) {
+                    if ((size_t)ile->getX() != i || (size_t)ile->getY() != j) {
                         ile->setUnVoisinPossible(caseActuelle.getIle());
                         caseActuelle.getIle()->setUnVoisinPossible(*ile);
 
@@ -350,18 +350,23 @@ void Grille::majVoisinsReels(Pont* pont){
 
 void Grille::placerPonts(Ile* ile){
 
-    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size()) && !(ile->getRelie())){
+    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size()) ){
+        Ile ile2;
         for(size_t i = 0 ; i < ile->getVoisinsPossibles().size() ; i++){
-            creerPont(ile, ile->getVoisinsPossibles().at(i), 2); //Pb : On a un vector d'ile et non un vector de pointeurs d'ile
-            ile->setVal();
-            ile->getVoisinsPossibles().at(i).setVal();
+            ile2 = ile->getVoisinsPossibles().at(i);
+            creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle() , 2);
+            ile->setVal(2);
+            ile->getVoisinsPossibles().at(i).setVal(2);
         }
+        ile->setEstRelie(true);
     }
     if( (unsigned int)(1 + (ile->getVal() - ile->getPontsPlaces()) / 2) == ile->getVoisinsPossibles().size() && !(ile->getRelie())){
+        Ile ile2;
         for(size_t i = 0; i< ile->getVoisinsPossibles().size() ; i++){
-            creerPont(ile, ile->getVoisinsPossibles().at(i), 1);
-            ile->setVal();
-            ile->getVoisinsPossibles().at(i).setVal();
+            ile2 = ile->getVoisinsPossibles().at(i);
+            creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle() , 1);
+            ile->setVal(1);
+            ile->getVoisinsPossibles().at(i).setVal(1);
         }
     }
 

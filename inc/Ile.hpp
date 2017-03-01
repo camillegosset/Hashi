@@ -18,7 +18,6 @@ private:
     //Copie de la structure d'Arbre
     int _hauteur;
     Ile* _pere;
-    Ile* _chef;
 
 public:
     // CONSTRUCTEURS
@@ -39,7 +38,7 @@ public:
     Ile* getChef();
 
     // ACCESSEURS ECRITURE
-    void setVal();
+    void setVal(int i);
     void setX(int);
     void setY(int);
     void setPontsPlaces(int);
@@ -50,7 +49,6 @@ public:
     void setUnVoisinReel(Ile* ile);
     void setHauteur(int h);
     void setPere(Ile* ile);
-    void setChef(Ile* ile);
 
     //SURCHARGE
     void affectation(Ile* ile);

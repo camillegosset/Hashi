@@ -50,12 +50,17 @@ Ile* Ile::getPere(){
     return _pere;
 }
 Ile* Ile::getChef(){
-    return _chef;
+    if( this->getPere() == NULL){
+        return this;
+    }
+    else{
+        return this->getPere()->getChef();
+    }
 }
 
 // Accesseurs en écriture
-void Ile::setVal() {
-    _val= _val - 1;
+void Ile::setVal(int i) {
+    _val= _val - i;
 }
 
 void Ile::setX(int x) {
@@ -98,9 +103,6 @@ void Ile::setPere(Ile* ile){
     _pere = ile;
 }
 
-void Ile::setChef(Ile* ile){
-    _chef = ile;
-}
 
 //SURCHARGE AFFECTATION par méthode
 void Ile::affectation(Ile* ile){
