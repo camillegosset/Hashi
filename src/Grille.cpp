@@ -188,18 +188,18 @@ void Grille::affichage (std::ostream& sortie) const{
 	if ( grille.getPont() != NULL ) {
 	  if ( grille.getPont()->getNombre() == 1 ) {
 	    if ( grille.getPont()->getEstVertical() ) {
-	      sortie << "| ";
+	      sortie << "-- ";
 	    }
 	    else {
-	      sortie << "--";
+	      sortie << "| ";
 	    }
 	  }
 	  else {
 	    if ( grille.getPont()->getEstVertical() ) {
-	      sortie << "||";
+	      sortie << "==";
 	    }
 	    else {
-	      sortie << "==";
+	      sortie << "||";
 	    }
 	  }
 	}
@@ -369,17 +369,17 @@ void Grille::placerPonts(Ile* ile){
 
 void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, _objets_presents[ile2.getX()][ile2.getY()].getIle(), nbr_ponts);
-    pont->estVertical();
+    pont->setEstVertical();
     if( pont->getEstVertical() == true){ //Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
 
-        for(int i = std::min(ile1->getX(), ile2.getX()) ; i < std::max(ile2.getX(), ile1->getX()); i++){
+        for(int i = std::min(ile1->getX(), ile2.getX()) +1; i < std::max(ile2.getX(), ile1->getX()); i++){
             //On crée un pont à chaque case
             _objets_presents[ile1->getY()][i].setPont(pont);
             majVoisinsReels(_objets_presents[ile1->getY()][i].getPont());
         }
     }
     else{
-        for(int i = std::min(ile1->getY(), ile2.getY()) ; i < std::max(ile2.getY(), ile1->getY()); i++){
+        for(int i = std::min(ile1->getY(), ile2.getY()) +1; i < std::max(ile2.getY(), ile1->getY()); i++){
             //On crée un pont à chaque case
             _objets_presents[ile1->getX()][i].setPont(pont);
             majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
@@ -389,7 +389,8 @@ void Grille::creerPont(Ile* ile1, Ile ile2, int nbr_ponts){
 
 void Grille::creerPont(Ile* ile1, Ile* ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, ile2, nbr_ponts);
-    pont->estVertical();
+
+    pont->setEstVertical();
 
     if( pont->getEstVertical() == false ) { // Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
 

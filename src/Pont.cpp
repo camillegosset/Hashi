@@ -10,10 +10,12 @@ Pont::Pont(Ile ile1, Ile ile2, int nombre){
 }
 
 Pont::Pont(Ile* ile1, Ile* ile2, int nombre){
-    _ile1->affectation(*ile1);
-    _ile2->affectation(*ile2);
+
+    this->_ile1 = ile1;
+    this->_ile2 = ile2;
     if( nombre >= 0 && nombre <= 2)
         _nombre = nombre;
+
 }
 
 // Accesseurs en lecture
@@ -48,7 +50,7 @@ void Pont::setNombre(int n) {
     else _nombre =0;
 }
 
-void Pont::estVertical(){
+void Pont::setEstVertical(){
     if ( _ile1->getX() == _ile2->getX() ){
         _est_vertical = true;
     }

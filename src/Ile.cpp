@@ -103,14 +103,14 @@ void Ile::setChef(Ile* ile){
 }
 
 //SURCHARGE AFFECTATION par méthode
-void Ile::affectation(Ile& ile){
-    this->_val= ile.getVal();
-    this->_abscisse= ile.getX();
-    this->_ordonnee= ile.getY();
-    this->_ponts_places= ile.getPontsPlaces();
-    this->_voisins_possibles= ile.getVoisinsPossibles();
-    this->_voisins_reels= ile.getVoisinsReels();
-    this->_est_relie= ile._est_relie;
+void Ile::affectation(Ile* ile){
+    this->_val= ile->getVal();
+    this->_abscisse= ile->getX();
+    this->_ordonnee= ile->getY();
+    this->_ponts_places= ile->getPontsPlaces();
+    this->_voisins_possibles= ile->getVoisinsPossibles();
+    this->_voisins_reels= ile->getVoisinsReels();
+    this->_est_relie= ile->getRelie();
 }
 
 //Methodes

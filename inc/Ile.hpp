@@ -53,7 +53,7 @@ public:
     void setChef(Ile* ile);
 
     //SURCHARGE
-    void affectation(Ile& ile);
+    void affectation(Ile* ile);
 
     //Methodes
     void supprimerUneCaseVoisinsPossibles(size_t i);
