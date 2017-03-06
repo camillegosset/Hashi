@@ -348,37 +348,82 @@ void Grille::majVoisinsReels(Pont* pont){
     }
 }
 
+// Fonction qui traverse toute la grille, et fait appel à placerPonts dès qu'il trouve une ile.
+void Grille::tracerPonts() {
+  for (unsigned int i = 0; i < _n; i++) {
+    for (unsigned int j = 0; j < _m; j++) {
+      if (getUneIleOuUnPont(i,j).getIle() != NULL) {
+	placerPonts(getUneIleOuUnPont(i,j).getIle());
+      }
+    }
+  }
+}
+
 void Grille::placerPonts(Ile* ile){
+  Ile ile2;
 
-    if( ile->getPontsPlaces() == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size()) ){
-        Ile ile2;
-        for(size_t i = 0 ; i < ile->getVoisinsPossibles().size() ; i++){
-            ile2 = ile->getVoisinsPossibles().at(i);
-            creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle() , 2);
-            ile->setVal(2);
-            ile->getVoisinsPossibles().at(i).setVal(2);
-        }
-        ile->setEstRelie(true);
+  // Règle 1: si Val_restante = 2 * Nb_voisins_possibles, alors doubles ponts partout
+  if( (ile->getVal() - ile->getPontsPlaces()) == 0 && (unsigned int)ile->getVal() == 2*(ile->getVoisinsPossibles().size()) ){
+    
+    for(size_t i = 0 ; i < ile->getVoisinsPossibles().size() ; i++){
+      ile2 = ile->getVoisinsPossibles().at(i);
+      
+      creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle(), 2);
+      //creerPont(ile, &ile2, 2);
+      
+      ile->setPontsPlaces(ile->getPontsPlaces()+2);
+      ile2.setPontsPlaces(ile2.getPontsPlaces()+2);
+
+      if ( ile2.getPontsPlaces() == ile2.getVal() ) {
+	ile2.setEstRelie(true);
+	ile->getVoisinsPossibles().erase(ile->getVoisinsPossibles().begin()+i);
+      }
     }
-    if( (unsigned int)(1 + (ile->getVal() - ile->getPontsPlaces()) / 2) == ile->getVoisinsPossibles().size() && !(ile->getRelie())){
-        Ile ile2;
-        for(size_t i = 0; i< ile->getVoisinsPossibles().size() ; i++){
-            ile2 = ile->getVoisinsPossibles().at(i);
-            creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle() , 1);
-            ile->setVal(1);
-            ile->getVoisinsPossibles().at(i).setVal(1);
-        }
+    ile->setEstRelie(true);
+  }
+  
+  // Règle 2: si (Val_restante / 2) + 1 = Nb_voisins_possibles, alors simple pont partout (fonctionne seulement quand Val_restante est impaire)
+  if( ((unsigned int)(ile->getVal() - ile->getPontsPlaces())%2 != 0) && ((((unsigned int)(ile->getVal() - ile->getPontsPlaces()) /2) +1) == ile->getVoisinsPossibles().size()) && !(ile->getRelie())) {
+    
+    for (size_t i = 0; i< ile->getVoisinsPossibles().size() ; i++) {
+      ile2 = ile->getVoisinsPossibles().at(i);
+      
+      creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle(), 1);
+      
+      ile->setPontsPlaces(ile->getPontsPlaces()+1);
+      ile2.setPontsPlaces(ile2.getPontsPlaces()+1);
+
+      if ( ile2.getPontsPlaces() == ile2.getVal() ) {
+	ile2.setEstRelie(true);
+	ile->getVoisinsPossibles().erase(ile->getVoisinsPossibles().begin()+i);
+      }
     }
 
+    if ( (unsigned int)(ile->getVal() - ile->getPontsPlaces()) == (ile->getVoisinsPossibles().size()) ) {
+      for (size_t i = 0; i< ile->getVoisinsPossibles().size() ; i++) {
+	ile2 = ile->getVoisinsPossibles().at(i);
+	
+	creerPont(ile, getUneIleOuUnPont(ile2.getX(), ile2.getY()).getIle(), 1);
+	
+	ile->setPontsPlaces(ile->getPontsPlaces()+1);
+	ile2.setPontsPlaces(ile2.getPontsPlaces()+1);
+	
+	if ( ile2.getPontsPlaces() == ile2.getVal() ) {
+	  ile2.setEstRelie(true);
+	  ile->getVoisinsPossibles().erase(ile->getVoisinsPossibles().begin()+i);
+	}
+      }
+      ile->setEstRelie(true);
+    }
+  }
 }
 
 void Grille::creerPont(Ile* ile1, Ile* ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, ile2, nbr_ponts);
-
     pont->setEstVertical();
-
-    if( pont->getEstVertical() == false ) { // Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
-
+    std::cout<<"Jacobb\n";
+    if ( pont->getEstVertical() == false ) { // Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
+      
         for(int i = std::min(ile1->getX(), ile2->getX())+1 ; i < std::max(ile2->getX(), ile1->getX()); i++) {
             // On crée un pont à chaque case
             _objets_presents[i][ile1->getY()].setPont(pont);
