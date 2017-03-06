@@ -32,6 +32,8 @@ int Pont::getNombre() {
 }
 
 bool Pont::getEstVertical() {
+  std::cout<<"Jacob\n";
+  std::cout<<"Jacob\n";
     return _est_vertical;
 }
 
