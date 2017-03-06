@@ -59,6 +59,12 @@ void Pont::setEstVertical(){
     }
 }
 
+void Pont::setNombre(){
+    if( _nombre >= 0 && _nombre < 2){
+        _nombre++;
+    }
+}
+
 // METHODE majComposantesConnexes
 // Correction pb: On va comparer uniquement les hauteurs des chefs comme ça pas de parcours
 void Pont::majComposantesConnexes(){

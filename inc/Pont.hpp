@@ -25,6 +25,7 @@ public:
     void setIle1(Ile*);
     void setIle2(Ile*);
     void setNombre(int);
+    void setNombre();
     void setEstVertical();
 
     // Méthode pour faire l'union de composantes connexes

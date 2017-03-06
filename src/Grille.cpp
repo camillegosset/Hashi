@@ -374,22 +374,53 @@ void Grille::placerPonts(Ile* ile){
 
 void Grille::creerPont(Ile* ile1, Ile* ile2, int nbr_ponts){
     Pont* pont= new Pont(ile1, ile2, nbr_ponts);
+    ile1->setPontsPlaces(nbr_ponts);
+    ile2->setPontsPlaces(nbr_ponts);
 
     pont->setEstVertical();
+    if( ile1->getRelie() == false && ile2->getRelie() == false){
+        if( pont->getEstVertical() == false ) {
 
-    if( pont->getEstVertical() == false ) { // Possibilité de savoir dès maintenant si vertical ou non donc on peut faire le CONSTRUCTEUR adéquate
-
-        for(int i = std::min(ile1->getX(), ile2->getX())+1 ; i < std::max(ile2->getX(), ile1->getX()); i++) {
-            // On crée un pont à chaque case
-            _objets_presents[i][ile1->getY()].setPont(pont);
-            majVoisinsReels(_objets_presents[i][ile1->getY()].getPont());
+            for(int i = std::min(ile1->getX(), ile2->getX())+1 ; i < std::max(ile2->getX(), ile1->getX()); i++) {
+                if( _objets_presents[i][ile1->getY()].getPont() != NULL){
+                    _objets_presents[i][ile1->getY()].getPont()->setNombre();
+                }
+                else{
+                    if( ile1->getChef() == ile2->getChef()){
+                        // On crée un pont à chaque case
+                        _objets_presents[i][ile1->getY()].setPont(pont);
+                        majVoisinsReels(_objets_presents[i][ile1->getY()].getPont());
+                    }
+                    else{
+                        // On crée un pont à chaque case
+                        _objets_presents[i][ile1->getY()].setPont(pont);
+                        majVoisinsReels(_objets_presents[i][ile1->getY()].getPont());
+                        //On fait l'union des composantes connexes
+                        _objets_presents[i][ile1->getY()].getPont()->majComposantesConnexes();
+                    }
+                }
+            }
         }
-    }
-    else {
-        for(int i = std::min(ile1->getY(), ile2->getY())+1 ; i < std::max(ile2->getY(), ile1->getY()); i++) {
-            // On crée un pont à chaque case
-            _objets_presents[ile1->getX()][i].setPont(pont);
-            majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
+        else {
+            for(int i = std::min(ile1->getY(), ile2->getY())+1 ; i < std::max(ile2->getY(), ile1->getY()); i++) {
+                if( _objets_presents[ile1->getX()][i].getPont() != NULL){
+                    _objets_presents[ile1->getX()][i].getPont()->setNombre();
+                }
+                else{
+                    if( ile1->getChef() == ile2->getChef()){
+                        // On crée un pont à chaque case
+                        _objets_presents[ile1->getX()][i].setPont(pont);
+                        majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
+                    }
+                    else{
+                        // On crée un pont à chaque case
+                        _objets_presents[ile1->getX()][i].setPont(pont);
+                        majVoisinsReels(_objets_presents[ile1->getX()][i].getPont());
+                        //On fait l'union des composantes connexes
+                        _objets_presents[ile1->getX()][i].getPont()->majComposantesConnexes();
+                    }
+                }
+            }
         }
     }
 }

@@ -72,7 +72,7 @@ void Ile::setY(int y) {
 }
 
 void Ile::setPontsPlaces(int n) {
-    _ponts_places= n;
+    _ponts_places+= n;
 }
 
 void Ile::setUnVoisinPossible(Ile ile){
